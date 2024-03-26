@@ -114,4 +114,4 @@ Installing the component is  easy. All you have to do is to create a container, 
 2. You should wrap each item by `<ScrollableArrowItem/>` to make it work, and be able to use the API of the component.
 
 ##License
-[MIT](https://themecloset.com "Try on a website").
+[Lil License](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/License).
