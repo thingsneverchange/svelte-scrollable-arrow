@@ -9,7 +9,7 @@
 Svelte Scrollable Arrow effortlessly creates sleek arrows for horizontal navigation for contents that require responsiveness. It aims to keep every element as it is while wrapping the container, and making it scrollable with arrows or natively.
 
 ## Compatibility
-It works gracefully on any device such as a mobile, table or desktop. It listenes to the eyboard event, touch event, and scroll event as this utilizes the [built-in document scroll event](https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event).
+It works gracefully on any device such as a mobile, table or desktop. It listens to the keyboard event, touch event, and scroll event as this component basically utilizes the [built-in scroll event](https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event).
 
 ## Demos
 
@@ -17,8 +17,7 @@ It works gracefully on any device such as a mobile, table or desktop. It listene
 
 [Try on a website✨ (Click the search input)](https://themecloset.com "Try on our website").
 
-## Mobile
-On mobile, this basically works like a simple touchable scroll container.
+## Mobile Preview
 <div style="text-align:center">
 <img src="https://images.themecloset.pictures/github/scrollable-arrow/iphone-preview.gif" alt="Svelte Scrollable Arrow" style="max-width:300px" /></div>
 
