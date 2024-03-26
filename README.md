@@ -12,7 +12,12 @@ Svelte Scrollable Arrow effortlessly creates sleek arrows for a horizontal navig
 The content sometimes can be unmanageable, requiring to write a separate grid, list, or menus for wider and smaller devices. It solves this issue. You can still stuff all the menus or images in one line by making them scrollable.
 
 ## Compatibility
-It works gracefully on any device such as mobile, tablet or desktop. It listens to the keyboard event, touch event, and scroll event as this component basically utilizes the [built-in scroll event](https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event).
+This component works seamlessly on any device, including mobile, tablet, or desktop. It efficiently handles various scroll triggers, thanks to its utilization of the [built-in scroll event](https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event),
+
+- Mouse wheels ✨
+- Keyboard arrow events ✨ (Only if mouse is over the container to prevent every instance from listening to this event)
+- Built-in arrows (←/→) ✨
+- Touchevents ✨
 
 ## Demos
 
@@ -38,7 +43,7 @@ import {ScrollableArrow, ScrollableArrowItem} from 'svelte-scrollable-arrow'
 ```
 
 ## Usage guide
-Installing the component is easy. All you have to do is to wrap each of your images, buttons or texts with `<ScrollableArrowItem></ScrollableArrowItem>` inside the `<ScrollableArrow></ScrollableArrow>` container. Items can be multiple. You can use the loop `{#each}{/each}` block and it may be wise to assign a key for each item.
+All you have to do is to wrap each of your images, buttons or texts with `<ScrollableArrowItem></ScrollableArrowItem>` inside the `<ScrollableArrow></ScrollableArrow>` container. Items can be multiple. You can use the loop `{#each}{/each}` block and it may be wise to assign a key for each item.
 
 ```html
 <script>
@@ -103,6 +108,7 @@ Installing the component is easy. All you have to do is to wrap each of your ima
 | scroll                  | `CustomEvent`     |  `{detail}`          | 	Fires when the scroll event in the container is fired. This also fires when a user scrolls through the container without clicking the arrow. (Keyboard arrows, touch gestures, and mouse wheels.) )                             |
 | scrollStart                  | `CustomEvent`     |  `{detail}`          | 	Fires once when the scroll event in the container is fired. This is different from `scroll` as `scroll` fires on scroll.                             |
 | scrollEnd                  | `CustomEvent`     |  `{detail}`          | 	Fires 1 second later when the scroll event in the container is ended.                             |
+| reachedEnd                  | `CustomEvent`     |  `{detail}`          | 	Fires when the scroller reached at the end.                   |
 | mouseenter                  | `CustomEvent`  | `{detail}`            | Fires when the mouse enters the container
 | mouseleave                  | `CustomEvent`  | `{detail}`            | Fires when the mouse leaves the container
 | next                  | `CustomEvent`  | `{detail}`            | Fires when the `next arrow` is fired. (Can be triggered with keyboard arrows →.)
@@ -122,7 +128,7 @@ This option is enabled by default. If you see the `right arrow` button shows up,
 ## Limitations & Things to do
 
 1. The component does not support custom arrow images, even though you can change the color & size
-2. You should wrap each item by `<ScrollableArrowItem/>` to make it work, and be able to use the API of the component.
+2. You should wrap each item by `<ScrollableArrowItem/>` to make it work and be able to use the API of the component.
 3. The layout may break if the items in the content don't have fixed width, and height.
 
 ## License
