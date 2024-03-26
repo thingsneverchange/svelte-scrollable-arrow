@@ -14,7 +14,7 @@ export let arrowShadowColor : string = "rgba(0,0,0,0.5)";
 export let arrow : boolean = true;
 export let arrowColor : string = "#ffffff";
 export let arrowSize : number = 18;
-export let arrowPosition : 'top' | 'middle' | 'bottom' = 'middle';
+export let arrowPosition : 'top' | 'center' | 'bottom' = 'center';
 export let id : string = "";
 export let threshold: number = 0;
 export let showArrowByDefault : boolean = true
@@ -226,7 +226,7 @@ onMount( () :void => {
 .scroll_view_container .arrow_container.right .arrow{float:right;position:absolute;right:20px;}
 .scroll_view_container .arrow_container.left .arrow{float:right;position:absolute;left:20px;}
 .scroll_view_container .arrow_container.position-top .arrow{top:10px}
-.scroll_view_container .arrow_container.position-middle .arrow{top:50%;transform:translateY(-50%)}
+.scroll_view_container .arrow_container.position-center .arrow{top:50%;transform:translateY(-50%)}
 .scroll_view_container .arrow_container.position-bottom .arrow{right:20px;bottom:10px;}
 
 .scroll_view_container .scroll_area .content{display:flex; align-items: var(--scrollview-arrow-align-items); justify-content: var(--scrollview-arrow-justify-content)}
