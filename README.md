@@ -1,5 +1,5 @@
 <div align="center" style="text-align:center">
-  <img src="https://images.themecloset.pictures/github/scrollable-arrow/logo.png" alt="Svelte Scrollable Arrow" width="250" />
+  <img src="https://images.themecloset.pictures/github/scrollable-arrow/logo.png" alt="Svelte Scrollable Arrow" width="350" />
   <h1>Svelte Scrollable Arrow </h1>
   <a href="https://npmjs.org/package/svelte-scrollable-arrow">
     <img src="https://badgen.now.sh/npm/v/svelte-scrollable-arrow" alt="version" />
@@ -12,7 +12,7 @@ Svelte Scrollable Arrow effortlessly creates sleek arrows for a horizontal navig
 The content sometimes can be unmanageable, requiring to write a separate grid, list, or menus for wider and smaller devices. It solves this issue. You can still stuff all the menus or images in one line by making them scrollable.
 
 ## Compatibility
-This component works seamlessly on any device, including mobile, tablet, or desktop. It efficiently handles various scroll triggers, thanks to its utilization of the [built-in scroll event](https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event),
+This component works seamlessly on any device, including mobile, tablet, or desktop. It efficiently handles various scroll triggers, thanks to its utilization of the [scroll event](https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event),
 
 - Mouse wheels ✨
 - Keyboard arrow events ✨ (Only if mouse is over the container to prevent every instance from listening to this event)
@@ -30,7 +30,7 @@ This component works seamlessly on any device, including mobile, tablet, or desk
 <img src="https://images.themecloset.pictures/github/scrollable-arrow/iphone-preview.gif" alt="Svelte Scrollable Arrow" style="max-width:300px" /></div>
 
 ## Responsive
-
+Automatically hides/shows arrows depending on the container size.
 <img src="https://images.themecloset.pictures/github/scrollable-arrow/responsive-preview-2.gif" width="100%"/>
 
 ## Installation
@@ -81,8 +81,8 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
 | justifyContent                  |  `"start"⎮"end"⎮"flex-start"⎮"flex-end"⎮"center"⎮"left"⎮"right"⎮"normal"⎮"space-between"⎮"space-around"⎮"space-evenly"⎮"stretch`     | `"start"`      | Basically the same as `justify-content`. Sets how the items are aligned horizontally.             |
 | alignItems                  |  `"normal"⎮ "flex-start"⎮"flex-end"⎮"center"⎮"start"⎮"end"⎮"self-start"⎮"self-end"⎮"baseline"⎮"first baseline"⎮"last baseline"⎮"stretch"⎮"safe"⎮"unsafe"`| `"center"` | Basically same as `align-items`. Sets how the items are aligned vertically.             |
-| shadow                  | `boolean`   | `true`            | Enables the shadow behind each arrow. If disabled, ShadowColor has no effect.                  |
-| shadowColor                  | `string`   | `"rgba(0,0,0,0.5)"`            | Only accepts a RGBA color for the shadow behind each arrow.                  |
+| arrowShadow                  | `boolean`   | `true`            | Enables the shadow behind each arrow. If disabled, ShadowColor has no effect.                  |
+| arrowShadowColor                  | `string`   | `"rgba(0,0,0,0.5)"`            | Only accepts a RGBA color for the shadow behind each arrow.                  |
 | arrow                  | `boolean`     | `true`          | Show the arrow on and off                                         |
 | arrowColor                  | `string`     | `"#ffffff"`          | Hex Color for the arrow                                          |
 | arowSize                  | `number`     |  `18`          | Size of each arrow (px)                                          |

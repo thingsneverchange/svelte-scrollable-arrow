@@ -9,8 +9,8 @@ type AlignItems = "normal"| "flex-start"|"flex-end"|"center"|"start"|"end"|"self
 
 export let justifyContent : justifyContent = "start";
 export let alignItems : AlignItems = "center";
-export let shadow : boolean = true
-export let shadowColor : string = "rgba(0,0,0,0.5)";
+export let arrowShadow : boolean = true
+export let arrowShadowColor : string = "rgba(0,0,0,0.5)";
 export let arrow : boolean = true;
 export let arrowColor : string = "#ffffff";
 export let arrowSize : number = 18;
@@ -22,7 +22,7 @@ export let showArrowByDefault : boolean = false
 export let style: string = '';
 
 if(typeof arrowSize != 'number') throw new Error("Arrow size should be only number.")
-if(isRGBA(shadowColor) === false) throw new Error("Shadow Color should be a rgba format `rgba(0,0,0,0.5)`.")
+if(isRGBA(arrowShadowColor) === false) throw new Error("Shadow Color should be a rgba format `rgba(0,0,0,0.5)`.")
 if(isHex(arrowColor) === false) throw new Error("Arrow color should be hex `#ffffff`.")
 if(typeof threshold != 'number') throw new Error("Threshold should be number.")
 
@@ -43,9 +43,9 @@ let _internal_style = `--scrollview-arrow-justify-content=${justifyContent};
           --scrollview-arrow-align-items=${alignItems};
           ${style != "" ? style + ';' : ''};`
 
-if(shadow){
-  _internal_style += `--scrollview-arrow-left-shadow: ${shadowColor};`
-  _internal_style += `--scrollview-arrow-right-shadow: ${shadowColor};`
+if(arrowShadow){
+  _internal_style += `--scrollview-arrow-left-shadow: ${arrowShadowColor};`
+  _internal_style += `--scrollview-arrow-right-shadow: ${arrowShadowColor};`
 }else{
   _internal_style += `--scrollview-arrow-left-shadow: rgba(255,255,255,0);`
   _internal_style += `--scrollview-arrow-right-shadow: rgba(255,255,255,0);`
