@@ -109,5 +109,5 @@ import {ScrollableView, ScrollableViewItem} from 'svelte-scrollable-view'
 1. Currently, the component does not support custom arrows, even though you can change the color & size
 2. You should wrap each item by `<ScrollableViewItem/>` to make it work, and be able to use the API of the component.
 
-##License
-[MIT](https://themecloset.com "Try on a website").
+## License
+[LIL](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/License).
