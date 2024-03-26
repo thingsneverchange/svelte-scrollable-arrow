@@ -65,8 +65,8 @@ import {ScrollableArrow, ScrollableArrowItem} from 'svelte-scrollable-arrow'
 | scrollEnd                  | `CustomEvent`     |  `{detail}`          | 	Fires when scroll event in the container is ended.                             |
 | mouseenter                  | `CustomEvent`  | `{detail}`            | Fires when the mouse enters the container
 | mouseleave                  | `CustomEvent`  | `{detail}`            | Fires when the mouse leaves the container
-| next                  | `CustomEvent`  | `{detail}`            | Fies when the `next arrow` is fired. (Can be triggered with keyboard arrows ←/→.)
-| prev                  | `CustomEvent`  | `{detail}`            | Fies when the `prev arrow` is fired. (Can be triggered with keyboard arrows ←/→.)
+| next                  | `CustomEvent`  | `{detail}`            | Fies when the `next arrow` is fired. (Can be triggered with keyboard arrows →.)
+| prev                  | `CustomEvent`  | `{detail}`            | Fies when the `prev arrow` is fired. (Can be triggered with keyboard arrows ←.)
 | nav                  | `CustomEvent`  | `{detail}`            | Fies when either arrow is fired. (Can be triggered with keyboard arrows ←/→.)
 
 ## Event for Item (ScrollviewArrowItem)
