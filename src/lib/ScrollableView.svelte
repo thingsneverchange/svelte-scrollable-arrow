@@ -147,6 +147,13 @@ const __scrollCheckReachEnd = () => {
 onMount( () :void => {
 
   _scrollThreshold = threshold === 0 || threshold < 0 ? window.innerWidth / 3 : threshold // assign threshold on mount
+
+  //check if there's scroll to go if not disable right
+  if(_element_scrollable.scrollWidth <= _element_scrollable.clientWidth){
+    _showRight = false
+  }
+  //check if there's scroll to go.
+
   _element_scrollable.addEventListener('scroll', () => {
 
     __validateArrows()

@@ -8,16 +8,16 @@
 
 Svelte Scrollable Arrow effortlessly creates sleek arrows for horizontal navigation for contents that require responsiveness. It aims to keep every element as it is while wrapping the container, and making it scrollable with arrows or natively.
 
-##Compatibility
+## Compatibility
 It works gracefully on any device such as a mobile, table or desktop. It listenes to the eyboard event, touch event, and scroll event as this utilizes the [built-in document scroll event](https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event).
 
-##Demos
+## Demos
 
  <img src="https://images.themecloset.pictures/github/scrollable-arrow/preview.gif" alt="Svelte Scrollable Arrow" width="100%" />
 
 [Try on a website✨ (Click the search input)](https://themecloset.com "Try on our website").
 
-##Mobile
+## Mobile
 On mobile, this basically works like a simple touchable scroll container as the component utlizes it.
 <div style="text-align:center">
 <img src="https://images.themecloset.pictures/github/scrollable-arrow/iphone-preview.gif" alt="Svelte Scrollable Arrow" style="max-width:300px" /></div>
@@ -77,10 +77,11 @@ import {ScrollableView, ScrollableViewItem} from 'svelte-scrollable-view'
 | invisible                  | `string`  | `''`            | Fires when the item is not visible
 
 ### Usage Guide
+Installing the component is  easy. All you have to do is to create a container, and wrap it with `<ScrollableView></ScrollableView>` and your images, buttons or texts with `<ScrollableViewItem></ScrollableViewItem>`.
 
 ```html
 <script>
-  import {ScrollableView, ScrollableViewItem} from 'svelte-scrollable-view'
+  import {ScrollableView, ScrollableViewItem} from 'svelte-scrollable-arrow'
 </script>
 
 <ScrollableView>
