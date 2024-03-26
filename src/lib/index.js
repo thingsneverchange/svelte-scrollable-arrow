@@ -1,8 +1,8 @@
-import ScrollableView from '$lib/ScrollableView.svelte'
-import ScrollableViewItem from '$lib/ScrollableViewItem.svelte'
+import ScrollableArrow from '$lib/ScrollableArrow.svelte'
+import ScrollableArrowItem from '$lib/ScrollableArrowItem.svelte'
 
 
 export {
-  ScrollableView,
-  ScrollableViewItem
+  ScrollableArrow,
+  ScrollableArrowItem
 }

@@ -46,6 +46,6 @@ onMount( () => {
 })
 
 </script>
-<div bind:this="{itemElement}" class="{classNames ? classNames : ''} item" id="{id != "" ? id :undefined}" style="{style != "" ? style : undefined}">
+<div bind:this="{itemElement}" class="{isVisible ? 'visible' : ''} {classNames ? classNames : ''} item" id="{id != "" ? id :undefined}" style="{style != "" ? style : undefined}">
   <slot/>
 </div>

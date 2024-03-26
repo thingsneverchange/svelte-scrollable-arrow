@@ -3,7 +3,6 @@
   <h1>Svelte Scrollable Arrow </h1>
   <a href="https://npmjs.org/package/svelte-scrollable-arrow">
     <img src="https://badgen.now.sh/npm/v/svelte-scrollable-arrow" alt="version" />
-    <img src="https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white" alt="version" />
   </a>
 
 </div>
