@@ -1,6 +1,6 @@
 {
 	"name": "svelte-scrollable-arrow",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -14,6 +14,10 @@
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
 		"test:unit": "vitest"
+	},
+  "license": {
+		"type": "LIL",
+		"url": "https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/License"
 	},
 	"repository": {
     "type": "git",
