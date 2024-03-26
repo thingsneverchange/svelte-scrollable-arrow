@@ -28,7 +28,7 @@ On mobile, this basically works like a simple touchable scroll container as the 
 npm install svelte-scrollable-arrow
 ```
 ```javascript
-import {ScrollableView, ScrollableViewItem} from 'svelte-scrollable-view'
+import {ScrollableArrow, ScrollableArrowItem} from 'svelte-scrollable-arrow'
 ```
 
 ## Props for Container (ScrollviewArrow)
@@ -77,41 +77,41 @@ import {ScrollableView, ScrollableViewItem} from 'svelte-scrollable-view'
 | invisible                  | `CustomEvent`  | `{detail}`            | Fires when the item is not visible
 
 ### Usage Guide
-Installing the component is  easy. All you have to do is to create a container, and wrap it with `<ScrollableView></ScrollableView>` and your images, buttons or texts with `<ScrollableViewItem></ScrollableViewItem>`.
+Installing the component is  easy. All you have to do is to create a container, and wrap it with `<ScrollableArrow></ScrollableArrow>` and your images, buttons or texts with `<ScrollableArrowItem></ScrollableArrowItem>`.
 
 ```html
 <script>
-  import {ScrollableView, ScrollableViewItem} from 'svelte-scrollable-arrow'
+  import {ScrollableArrow, ScrollableArrowItem} from 'svelte-scrollable-arrow'
 </script>
 
-<ScrollableView>
-  <ScrollableViewItem>
+<ScrollableArrow>
+  <ScrollableArrowItem>
    <div>
 		<!-- item -->
 	</div>
-  </ScrollableViewItem>
-  <ScrollableViewItem>
+  </ScrollableArrowItem>
+  <ScrollableArrowItem>
     <div>
 		<!-- item -->
 	</div>
-  </ScrollableViewItem>
-  <ScrollableViewItem>
+  </ScrollableArrowItem>
+  <ScrollableArrowItem>
     <div>
 		<!-- item -->
 	</div>
-  </ScrollableViewItem>
-  <ScrollableViewItem>
+  </ScrollableArrowItem>
+  <ScrollableArrowItem>
     <div>
 		<!-- item -->
 	</div>
-  </ScrollableViewItem>
-</ScrollableView>
+  </ScrollableArrowItem>
+</ScrollableArrow>
 
 ```
 ## Limitations & Things to do
 
 1. Currently, the component does not support custom arrows, even though you can change the color & size
-2. You should wrap each item by `<ScrollableViewItem/>` to make it work, and be able to use the API of the component.
+2. You should wrap each item by `<ScrollableArrowItem/>` to make it work, and be able to use the API of the component.
 
 ##License
 [MIT](https://themecloset.com "Try on a website").
