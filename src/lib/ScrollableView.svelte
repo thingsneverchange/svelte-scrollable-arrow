@@ -13,14 +13,14 @@ export let shadow : boolean = true
 export let shadowColor : string = "rgba(0,0,0,0.5)";
 export let arrow : boolean = true;
 export let arrowColor : string = "#ffffff";
-export let arowSize : number = 18;
+export let arrowSize : number = 18;
 export let arrowPosition : 'top' | 'middle' | 'bottom' = 'middle';
 export let id : string = "";
 export let threshold: number = 0;
 
 export let style: string = '';
 
-if(typeof arowSize != 'number') throw new Error("Arrow size should be only number.")
+if(typeof arrowSize != 'number') throw new Error("Arrow size should be only number.")
 if(isRGBA(shadowColor) === false) throw new Error("Shadow Color should be a rgba format `rgba(0,0,0,0.5)`.")
 if(isHex(arrowColor) === false) throw new Error("Arrow color should be hex `#ffffff`.")
 if(typeof threshold != 'number') throw new Error("Threshold should be number.")
@@ -187,14 +187,14 @@ onMount( () :void => {
     {#if _showLeft && arrow}
       <div class="left arrow_container position-{arrowPosition}">
         <button class="arrow" on:click="{__moveToLeft}" tabindex="0" on:keydown="{__moveToLeft}">
-          <Arrow color="{arrowColor}" size="{arowSize.toString()}px" direction="left"/>
+          <Arrow color="{arrowColor}" size="{arrowSize.toString()}px" direction="left"/>
         </button>
       </div>
     {/if}
     {#if _showRight && arrow}
       <div class="right arrow_container position-{arrowPosition}">
         <button class="arrow" on:click="{__moveToRight}" tabindex="0" on:keydown="{__moveToRight}">
-          <Arrow color="{arrowColor}" size="{arowSize.toString()}px" direction="Right"/>
+          <Arrow color="{arrowColor}" size="{arrowSize.toString()}px" direction="Right"/>
         </button>
       </div>
     {/if}

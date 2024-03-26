@@ -15,7 +15,7 @@ let parentElement : HTMLElement | null;
 function isScrolledIntoView(): boolean {
   const elementRect = itemElement ? itemElement.getBoundingClientRect() : null
   const containerRect = parentElement ? parentElement.getBoundingClientRect() : null
-  
+
   if(elementRect === null || containerRect == null) return false
 
   if(
@@ -46,7 +46,6 @@ onMount( () => {
 })
 
 </script>
-{isVisible}
 <div bind:this="{itemElement}" class="{classNames ? classNames : ''} item" id="{id != "" ? id :undefined}" style="{style != "" ? style : undefined}">
   <slot/>
 </div>
