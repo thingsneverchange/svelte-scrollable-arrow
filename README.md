@@ -76,7 +76,7 @@ import {ScrollableArrow, ScrollableArrowItem} from 'svelte-scrollable-arrow'
 | invisible                  | `CustomEvent`  | `{detail}`            | Fires when the item is not visible
 
 ### Usage Guide
-Installing the component is  easy. All you have to do is to create a container, and wrap it with `<ScrollableArrow></ScrollableArrow>` and your images, buttons or texts with `<ScrollableArrowItem></ScrollableArrowItem>`.
+Installing the component is  easy. All you have to do is to wrap your images, buttons or texts with `<ScrollableArrowItem></ScrollableArrowItem>` inside the `<ScrollableArrow></ScrollableArrow>` container.
 
 ```html
 <script>
