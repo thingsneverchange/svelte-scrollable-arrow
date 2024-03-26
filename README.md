@@ -36,7 +36,7 @@ import {ScrollableView, ScrollableViewItem} from 'svelte-scrollable-view'
 | Prop                   | Type      | Default         | Description                                                    |
 | ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
 | justifyContent                  |  `"start"⎮"end"⎮"flex-start"⎮"flex-end"⎮"center"⎮"left"⎮"right"⎮"normal"⎮"space-between"⎮"space-around"⎮"space-evenly"⎮"stretch`     | `start`      | Basically same as `justifyContent` CSS. Sets how the items are aligned horizontally.             |
-| alignItems                  |  `"normal"⎮ "flex-start"⎮"flex-end"⎮"center"⎮"start"⎮"end"⎮"self-start"⎮"self-end"⎮"baseline"⎮"first baseline"⎮"last baseline"⎮"stretch"⎮"safe"⎮"unsafe"`⎮ `center` | Basically same as `alignItems` CSS. Sets how the items are aligned horizontally.             |
+| alignItems                  |  `"normal"⎮ "flex-start"⎮"flex-end"⎮"center"⎮"start"⎮"end"⎮"self-start"⎮"self-end"⎮"baseline"⎮"first baseline"⎮"last baseline"⎮"stretch"⎮"safe"⎮"unsafe"`| `center` | Basically same as `alignItems` CSS. Sets how the items are aligned horizontally.             |
 | shadow                  | `boolean`   | `false`            | Enables the shadow behind each arrow. If disabled, ShadowColor has no effect.                  |
 | shadowColor                  | `string`   | `rgba(0,0,0,0.5)`            | Only accepts a RGBA color for the shadow behind each arrow.                  |
 | arrow                  | `boolean`     | `true`          | Show the arrow on and off                                         |
@@ -58,23 +58,23 @@ import {ScrollableView, ScrollableViewItem} from 'svelte-scrollable-view'
 
 ## Event for Container (ScrollviewArrow)
 
-| Prop                   | Type      | Default         | Description                                                    |
+| Prop                   | Type      | Callback         | Description                                                    |
 | ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
-| scroll                  | `string`     |  `''`          | 	Fires when scroll event in the container is fired. This also fires when a user scrolls through the container without clicking the arrow. (Keyboard, touch, and mouse) )                             |
-| scrollStart                  | `string`     |  `''`          | 	Fires once when scroll event in the container is fired. This is different from `scroll` as `scroll` fires on scroll.                             |
-| scrollEnd                  | `string`     |  `''`          | 	Fires when scroll event in the container is ended.                             |
-| mouseenter                  | `string`  | `''`            | Fires when the mouse enters the container
-| mouseleave                  | `string`  | `''`            | Fires when the mouse leaves the container
-| next                  | `string`  | `''`            | Fies when the `next arrow` is fired. (Can be triggered with keyboard arrows ←/→.)
-| prev                  | `string`  | `''`            | Fies when the `prev arrow` is fired. (Can be triggered with keyboard arrows ←/→.)
-| nav                  | `string`  | `''`            | Fies when either arrow is fired. (Can be triggered with keyboard arrows ←/→.)
+| scroll                  | `CustomEvent`     |  `{detail}`          | 	Fires when scroll event in the container is fired. This also fires when a user scrolls through the container without clicking the arrow. (Keyboard, touch, and mouse) )                             |
+| scrollStart                  | `CustomEvent`     |  `{detail}`          | 	Fires once when scroll event in the container is fired. This is different from `scroll` as `scroll` fires on scroll.                             |
+| scrollEnd                  | `CustomEvent`     |  `{detail}`          | 	Fires when scroll event in the container is ended.                             |
+| mouseenter                  | `CustomEvent`  | `{detail}`            | Fires when the mouse enters the container
+| mouseleave                  | `CustomEvent`  | `{detail}`            | Fires when the mouse leaves the container
+| next                  | `CustomEvent`  | `{detail}`            | Fies when the `next arrow` is fired. (Can be triggered with keyboard arrows ←/→.)
+| prev                  | `CustomEvent`  | `{detail}`            | Fies when the `prev arrow` is fired. (Can be triggered with keyboard arrows ←/→.)
+| nav                  | `CustomEvent`  | `{detail}`            | Fies when either arrow is fired. (Can be triggered with keyboard arrows ←/→.)
 
 ## Event for Item (ScrollviewArrowItem)
 
-| Prop                   | Type      | Default         | Description                                                    |
+| Prop                   | Type      | Callback         | Description                                                    |
 | ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
-| visible                  | `string`     |  `''`          | 	Fires when the item is visible                             |
-| invisible                  | `string`  | `''`            | Fires when the item is not visible
+| visible                  | `CustomEvent`     |  `{detail}`          | 	Fires when the item is visible                             |
+| invisible                  | `CustomEvent`  | `{detail}`            | Fires when the item is not visible
 
 ### Usage Guide
 Installing the component is  easy. All you have to do is to create a container, and wrap it with `<ScrollableView></ScrollableView>` and your images, buttons or texts with `<ScrollableViewItem></ScrollableViewItem>`.
