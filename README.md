@@ -1,6 +1,9 @@
 <div align="center" style="text-align:center">
   <img src="https://images.themecloset.pictures/github/scrollable-arrow/logo.png" alt="Svelte Scrollable Arrow" width="250" />
   <h1>Svelte Scrollable Arrow </h1>
+  <a href="https://npmjs.org/package/svelte-scrollable-arrow">
+    <img src="https://badgen.now.sh/npm/v/svelte-scrollable-arrow" alt="version" />
+  </a>
 </div>
 
 Svelte Scrollable Arrow effortlessly creates sleek arrows for horizontal navigation for contents that require responsiveness. It aims to keep every element as it is while wrapping the container, and making it scrollable with arrows or natively.
@@ -33,7 +36,7 @@ import {ScrollableView, ScrollableViewItem} from 'svelte-scrollable-view'
 | Prop                   | Type      | Default         | Description                                                    |
 | ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
 | justifyContent                  |  `"start"⎮"end"⎮"flex-start"⎮"flex-end"⎮"center"⎮"left"⎮"right"⎮"normal"⎮"space-between"⎮"space-around"⎮"space-evenly"⎮"stretch`     | `start`      | Basically same as `justifyContent` CSS. Sets how the items are aligned horizontally.             |
-| alignItems                  |  `"normal"⎮ "flex-start"⎮"flex-end"⎮"center"⎮"start"⎮"end"⎮"self-start"⎮"self-end"⎮"baseline"⎮"first baseline"⎮"last baseline"⎮"stretch"⎮"safe"⎮"unsafe"` | `center` | Basically same as `alignItems` CSS. Sets how the items are aligned horizontally.             |
+| alignItems                  |  `"normal"⎮ "flex-start"⎮"flex-end"⎮"center"⎮"start"⎮"end"⎮"self-start"⎮"self-end"⎮"baseline"⎮"first baseline"⎮"last baseline"⎮"stretch"⎮"safe"⎮"unsafe"`⎮ `center` | Basically same as `alignItems` CSS. Sets how the items are aligned horizontally.             |
 | shadow                  | `boolean`   | `false`            | Enables the shadow behind each arrow. If disabled, ShadowColor has no effect.                  |
 | shadowColor                  | `string`   | `rgba(0,0,0,0.5)`            | Only accepts a RGBA color for the shadow behind each arrow.                  |
 | arrow                  | `boolean`     | `true`          | Show the arrow on and off                                         |
@@ -109,5 +112,5 @@ import {ScrollableView, ScrollableViewItem} from 'svelte-scrollable-view'
 1. Currently, the component does not support custom arrows, even though you can change the color & size
 2. You should wrap each item by `<ScrollableViewItem/>` to make it work, and be able to use the API of the component.
 
-## License
-[LIL](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/License).
+##License
+[MIT](https://themecloset.com "Try on a website").
