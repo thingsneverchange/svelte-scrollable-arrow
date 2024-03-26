@@ -6,7 +6,7 @@
   </a>
 </div>
 
-Svelte Scrollable Arrow effortlessly creates sleek arrows for horizontal navigation for contents that require responsiveness. It aims to keep every element as it is while wrapping the container, and making it scrollable with arrows or natively.
+Svelte Scrollable Arrow effortlessly creates sleek arrows for horizontal navigation for contents that require responsiveness. It aims to keep every element as it is while wrapping the container, and making it scrollable with built-in arrows, touch events, keyboards, or gestures.
 
 ## Compatibility
 It works gracefully on any device such as a mobile, table or desktop. It listens to the keyboard event, touch event, and scroll event as this component basically utilizes the [built-in scroll event](https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event).
@@ -76,7 +76,7 @@ import {ScrollableArrow, ScrollableArrowItem} from 'svelte-scrollable-arrow'
 | invisible                  | `CustomEvent`  | `{detail}`            | Fires when the item is not visible
 
 ### Usage Guide
-Installing the component is  easy. All you have to do is to wrap your images, buttons or texts with `<ScrollableArrowItem></ScrollableArrowItem>` inside the `<ScrollableArrow></ScrollableArrow>` container.
+Installing the component is easy. All you have to do is to wrap your images, buttons or texts with `<ScrollableArrowItem></ScrollableArrowItem>` inside the `<ScrollableArrow></ScrollableArrow>` container. Items can be multiple. You can use the loop `{#each}{/each}` block, and it may be wise to assign a key for each item.
 
 ```html
 <script>
@@ -111,7 +111,7 @@ Installing the component is  easy. All you have to do is to wrap your images, bu
 
 1. Currently, the component does not support custom arrows, even though you can change the color & size
 2. You should wrap each item by `<ScrollableArrowItem/>` to make it work, and be able to use the API of the component.
-3. The layout may break if the items in the content dont't have fixed width, and height.
+3. The layout may break if the items in the content don't have fixed width, and height.
 
-##License
+## License
 [LIL License](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/License).
