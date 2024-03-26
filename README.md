@@ -19,7 +19,7 @@ This component works seamlessly on any device, including mobile, tablet, or desk
 - Built-in arrows (←/→) ✨
 - Touchevents ✨
 
-## Demos
+## Demo
 
  <img src="https://images.themecloset.pictures/github/scrollable-arrow/preview.gif" alt="Svelte Scrollable Arrow" width="100%" />
 
@@ -91,7 +91,7 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | showArrowByDefault                  | `boolean`     |  `true`          |  Shows the `right arrow` button on load, and it remains if the container has overflowing contents, and gets removed if it doesn't.                            |
 | id                  | `string`     |  `""`          | 	ID for container.                              |
 | class                  | `string`  | `""`            | Container classes    
-| style                  | `string`  | `'""`            | Container styles
+| style                  | `string`  | `""`            | Container styles
 
 ## Props for Item (ScrollviewArrowItem)
 
