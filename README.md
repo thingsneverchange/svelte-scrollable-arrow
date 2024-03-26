@@ -18,7 +18,7 @@ It works gracefully on any device such as a mobile, table or desktop. It listene
 [Try on a website✨ (Click the search input)](https://themecloset.com "Try on our website").
 
 ## Mobile
-On mobile, this basically works like a simple touchable scroll container as the component utlizes it.
+On mobile, this basically works like a simple touchable scroll container.
 <div style="text-align:center">
 <img src="https://images.themecloset.pictures/github/scrollable-arrow/iphone-preview.gif" alt="Svelte Scrollable Arrow" style="max-width:300px" /></div>
 
@@ -35,18 +35,18 @@ import {ScrollableArrow, ScrollableArrowItem} from 'svelte-scrollable-arrow'
 
 | Prop                   | Type      | Default         | Description                                                    |
 | ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
-| justifyContent                  |  `"start"⎮"end"⎮"flex-start"⎮"flex-end"⎮"center"⎮"left"⎮"right"⎮"normal"⎮"space-between"⎮"space-around"⎮"space-evenly"⎮"stretch`     | `start`      | Basically same as `justifyContent` CSS. Sets how the items are aligned horizontally.             |
-| alignItems                  |  `"normal"⎮ "flex-start"⎮"flex-end"⎮"center"⎮"start"⎮"end"⎮"self-start"⎮"self-end"⎮"baseline"⎮"first baseline"⎮"last baseline"⎮"stretch"⎮"safe"⎮"unsafe"`| `center` | Basically same as `alignItems` CSS. Sets how the items are aligned horizontally.             |
+| justifyContent                  |  `"start"⎮"end"⎮"flex-start"⎮"flex-end"⎮"center"⎮"left"⎮"right"⎮"normal"⎮"space-between"⎮"space-around"⎮"space-evenly"⎮"stretch`     | `"start"`      | Basically same as `justify-content`. Sets how the items are aligned horizontally.             |
+| alignItems                  |  `"normal"⎮ "flex-start"⎮"flex-end"⎮"center"⎮"start"⎮"end"⎮"self-start"⎮"self-end"⎮"baseline"⎮"first baseline"⎮"last baseline"⎮"stretch"⎮"safe"⎮"unsafe"`| `"center"` | Basically same as `align-items`. Sets how the items are aligned vertically.             |
 | shadow                  | `boolean`   | `false`            | Enables the shadow behind each arrow. If disabled, ShadowColor has no effect.                  |
-| shadowColor                  | `string`   | `rgba(0,0,0,0.5)`            | Only accepts a RGBA color for the shadow behind each arrow.                  |
+| shadowColor                  | `string`   | `"rgba(0,0,0,0.5)"`            | Only accepts a RGBA color for the shadow behind each arrow.                  |
 | arrow                  | `boolean`     | `true`          | Show the arrow on and off                                         |
-| arrowColor                  | `string`     | `#ffffff`          | Hex Color for the arrow                                          |
+| arrowColor                  | `string`     | `"#ffffff"`          | Hex Color for the arrow                                          |
 | arowSize                  | `number`     |  `18`          | Size of each arrow (px)                                          |
-| arrowPosition        | `"top" ⎮ "center" ⎮ "bottom'"`     |  `center`          | 	The position for each arrow.                              |
+| arrowPosition        | `"top" ⎮ "center" ⎮ "bottom'"`     |  `"center"`          | 	The position for each arrow.                              |
 | threshold                  | `number`     |  `0`          | The number of the scroll value required to move through container. If left unset, the default is set to 1/3 of the container's width.                              |
 | id                  | `string`     |  `null`          | 	ID for container.                              |
-| class                  | `string`  | `''`            | Container classes    
-| style                  | `string`  | `''`            | Container styles
+| class                  | `string`  | `""`            | Container classes    
+| style                  | `string`  | `'""`            | Container styles
 
 ## Props for Item (ScrollviewArrowItem)
 
@@ -112,6 +112,7 @@ Installing the component is  easy. All you have to do is to create a container, 
 
 1. Currently, the component does not support custom arrows, even though you can change the color & size
 2. You should wrap each item by `<ScrollableArrowItem/>` to make it work, and be able to use the API of the component.
+3. The layout may break if the items in the content dont't have fixed width, and height.
 
 ##License
-[Lil License](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/License).
+[LIL License](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/License).
