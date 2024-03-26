@@ -43,6 +43,7 @@ import {ScrollableArrow, ScrollableArrowItem} from 'svelte-scrollable-arrow'
 | arowSize                  | `number`     |  `18`          | Size of each arrow (px)                                          |
 | arrowPosition        | `"top" ⎮ "center" ⎮ "bottom'"`     |  `"center"`          | 	The position for each arrow.                              |
 | threshold                  | `number`     |  `0`          | The number of the scroll value required to move through container. If left unset, the default is set to 1/3 of the container's width.                              |
+| showArrowByDefault                  | `boolean`     |  `true`          |  The `right arrow` button shows up by default, and it remains if the container has overflowing contents, and gets removed if it doesn't.                            |
 | id                  | `string`     |  `null`          | 	ID for container.                              |
 | class                  | `string`  | `""`            | Container classes    
 | style                  | `string`  | `'""`            | Container styles
@@ -74,6 +75,9 @@ import {ScrollableArrow, ScrollableArrowItem} from 'svelte-scrollable-arrow'
 | ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
 | visible                  | `CustomEvent`     |  `{detail}`          | 	Fires when the item is visible                             |
 | invisible                  | `CustomEvent`  | `{detail}`            | Fires when the item is not visible
+
+### Note about  the `showArrowByDefault` option.
+This optioin is enabled by default. If you see the `right arrow` button shows up, and disappears immediately it mean there are not enough scrollable contents. As it relies on the `onMount` lifecycle, this flickering is inevitable. You can disable it (not completely, but only when there are not enough contents to scroll) with this option. The recommended way is to make it `true` for smaller window sizes such as mobile, or tablets, and `false`for the wider views such as desktop.
 
 ### Usage Guide
 Installing the component is easy. All you have to do is to wrap your images, buttons or texts with `<ScrollableArrowItem></ScrollableArrowItem>` inside the `<ScrollableArrow></ScrollableArrow>` container. Items can be multiple. You can use the loop `{#each}{/each}` block, and it may be wise to assign a key for each item.

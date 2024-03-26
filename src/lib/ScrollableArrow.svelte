@@ -17,6 +17,7 @@ export let arrowSize : number = 18;
 export let arrowPosition : 'top' | 'middle' | 'bottom' = 'middle';
 export let id : string = "";
 export let threshold: number = 0;
+export let showArrowByDefault : boolean = false
 
 export let style: string = '';
 
@@ -33,7 +34,7 @@ let classNames : string = '';
 let _element_scrollable : HTMLElement;
 
 let _showLeft : boolean  = false;
-let _showRight : boolean  = true;
+let _showRight : boolean  = showArrowByDefault ? true : false;
 let _mouseOnScrollView : boolean = false;
 let _scrollThreshold : number = 0 // moved inside onMount due to window.
 
