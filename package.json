@@ -1,6 +1,6 @@
 {
 	"name": "svelte-scrollable-arrow",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -15,6 +15,10 @@
 		"test:integration": "playwright test",
 		"test:unit": "vitest"
 	},
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/thingsneverchange/svelte-scrollable-arrow"
+  },
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
