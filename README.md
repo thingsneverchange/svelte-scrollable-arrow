@@ -3,14 +3,15 @@
   <h1>Svelte Scrollable Arrow </h1>
   <a href="https://npmjs.org/package/svelte-scrollable-arrow">
     <img src="https://badgen.now.sh/npm/v/svelte-scrollable-arrow" alt="version" />
+    <img src="https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white" alt="version" />
   </a>
-  Type-safe ✨  
+
 </div>
 
 Svelte Scrollable Arrow effortlessly creates a horizontal navigation with sleek arrows for contents that require responsiveness. It aims to keep every child element as it is while wrapping the container with a scroll, and a navigation.
 
 ## Problem It Solves
-While bulding a grid, or menu, it can get unmanageable, requiring to write a separate grid, list, or menus for wider and smaller devices. It solves this issue. You can still stuff all the menus or images in one line by making them scrollable.
+Images, menus, and links can get unmanageable, requiring one to write a separate grid, list, or menus for wider and smaller devices. It solves this issue. You can still stuff all the menus or images in one line by making them scrollable.
 
 ## Compatibility
 This component works seamlessly on any device, including mobile, tablet, or desktop. It efficiently handles various scroll triggers, thanks to its utilization of the [scroll event](https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event),
@@ -19,6 +20,8 @@ This component works seamlessly on any device, including mobile, tablet, or desk
 - Keyboard arrow events ✨ (Only if mouse is over the container to prevent every instance from listening to this event)
 - Built-in arrows (←/→) ✨
 - Touchevents ✨
+
+And of course, this component is type-safe.
 
 ## Demo
 
