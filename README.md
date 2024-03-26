@@ -1,58 +1,113 @@
-# create-svelte
+<div align="center" style="text-align:center">
+  <img src="https://images.themecloset.pictures/github/scrollable-arrow/logo.png" alt="Svelte Scrollable Arrow" width="250" />
+  <h1>Svelte Scrollable Arrow </h1>
+</div>
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Svelte Scrollable Arrow effortlessly creates sleek arrows for horizontal navigation for contents that require responsiveness. It aims to keep every element as it is while wrapping the container, and making it scrollable with arrows or natively.
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+##Compatibility
+It works gracefully on any device such as a mobile, table or desktop. It listenes to the eyboard event, touch event, and scroll event as this utilizes the [built-in document scroll event](https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event).
 
-## Creating a project
+##Demos
 
-If you're seeing this, you've probably already done this step. Congrats!
+ <img src="https://images.themecloset.pictures/github/scrollable-arrow/preview.gif" alt="Svelte Scrollable Arrow" width="100%" />
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+[Try on a website✨ (Click the search input)](https://themecloset.com "Try on our website").
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+##Mobile
+On mobile, this basically works like a simple touchable scroll container as the component utlizes it.
+<div style="text-align:center">
+<img src="https://images.themecloset.pictures/github/scrollable-arrow/iphone-preview.gif" alt="Svelte Scrollable Arrow" style="max-width:300px" /></div>
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
-
-## Building
-
-To build your library:
+## Installation
 
 ```bash
-npm run package
+npm install svelte-scrollable-arrow
+```
+```javascript
+import {ScrollableView, ScrollableViewItem} from 'svelte-scrollable-view'
 ```
 
-To create a production version of your showcase app:
+## Props for Container (ScrollviewArrow)
 
-```bash
-npm run build
+| Prop                   | Type      | Default         | Description                                                    |
+| ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
+| justifyContent                  |  `"start"⎮"end"⎮"flex-start"⎮"flex-end"⎮"center"⎮"left"⎮"right"⎮"normal"⎮"space-between"⎮"space-around"⎮"space-evenly"⎮"stretch`     | `start`      | Basically same as `justifyContent` CSS. Sets how the items are aligned horizontally.             |
+| alignItems                  |  `"normal"⎮ "flex-start"⎮"flex-end"⎮"center"⎮"start"⎮"end"⎮"self-start"⎮"self-end"⎮"baseline"⎮"first baseline"⎮"last baseline"⎮"stretch"⎮"safe"⎮"unsafe"` | `center` | Basically same as `alignItems` CSS. Sets how the items are aligned horizontally.             |
+| shadow                  | `boolean`   | `false`            | Enables the shadow behind each arrow. If disabled, ShadowColor has no effect.                  |
+| shadowColor                  | `string`   | `rgba(0,0,0,0.5)`            | Only accepts a RGBA color for the shadow behind each arrow.                  |
+| arrow                  | `boolean`     | `true`          | Show the arrow on and off                                         |
+| arrowColor                  | `string`     | `#ffffff`          | Hex Color for the arrow                                          |
+| arowSize                  | `number`     |  `18`          | Size of each arrow (px)                                          |
+| arrowPosition        | `"top" ⎮ "center" ⎮ "bottom'"`     |  `center`          | 	The position for each arrow.                              |
+| threshold                  | `number`     |  `0`          | The number of the scroll value required to move through container. If left unset, the default is set to 1/3 of the container's width.                              |
+| id                  | `string`     |  `null`          | 	ID for container.                              |
+| class                  | `string`  | `''`            | Container classes    
+| style                  | `string`  | `''`            | Container styles
+
+## Props for Item (ScrollviewArrowItem)
+
+| Prop                   | Type      | Default         | Description                                                    |
+| ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
+| id                  | `string`     |  `''`          | 	ID for the item.                              |
+| class                  | `string`  | `''`            | Item classes    
+| style                  | `string`  | `''`            | Item styles
+
+## Event for Container (ScrollviewArrow)
+
+| Prop                   | Type      | Default         | Description                                                    |
+| ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
+| scroll                  | `string`     |  `''`          | 	Fires when scroll event in the container is fired. This also fires when a user scrolls through the container without clicking the arrow. (Keyboard, touch, and mouse) )                             |
+| scrollStart                  | `string`     |  `''`          | 	Fires once when scroll event in the container is fired. This is different from `scroll` as `scroll` fires on scroll.                             |
+| scrollEnd                  | `string`     |  `''`          | 	Fires when scroll event in the container is ended.                             |
+| mouseenter                  | `string`  | `''`            | Fires when the mouse enters the container
+| mouseleave                  | `string`  | `''`            | Fires when the mouse leaves the container
+| next                  | `string`  | `''`            | Fies when the `next arrow` is fired. (Can be triggered with keyboard arrows ←/→.)
+| prev                  | `string`  | `''`            | Fies when the `prev arrow` is fired. (Can be triggered with keyboard arrows ←/→.)
+| nav                  | `string`  | `''`            | Fies when either arrow is fired. (Can be triggered with keyboard arrows ←/→.)
+
+## Event for Item (ScrollviewArrowItem)
+
+| Prop                   | Type      | Default         | Description                                                    |
+| ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
+| visible                  | `string`     |  `''`          | 	Fires when the item is visible                             |
+| invisible                  | `string`  | `''`            | Fires when the item is not visible
+
+### Usage Guide
+
+```html
+<script>
+  import {ScrollableView, ScrollableViewItem} from 'svelte-scrollable-view'
+</script>
+
+<ScrollableView>
+  <ScrollableViewItem>
+   <div>
+		<!-- item -->
+	</div>
+  </ScrollableViewItem>
+  <ScrollableViewItem>
+    <div>
+		<!-- item -->
+	</div>
+  </ScrollableViewItem>
+  <ScrollableViewItem>
+    <div>
+		<!-- item -->
+	</div>
+  </ScrollableViewItem>
+  <ScrollableViewItem>
+    <div>
+		<!-- item -->
+	</div>
+  </ScrollableViewItem>
+</ScrollableView>
+
 ```
+## Limitations & Things to do
 
-You can preview the production build with `npm run preview`.
+1. Currently, the component does not support custom arrows, even though you can change the color & size
+2. You should wrap each item by `<ScrollableViewItem/>` to make it work, and be able to use the API of the component.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
-```
+##License
+[MIT](https://themecloset.com "Try on a website").
