@@ -9,12 +9,14 @@ const dispatch = createEventDispatcher();
 let classNames : string = '';
 let isVisible : boolean  = false
 
-let itemElement : HTMLElement;
-let parentElement : HTMLElement;
+let itemElement : HTMLElement | null;
+let parentElement : HTMLElement | null;
 
 function isScrolledIntoView(): boolean {
-  const elementRect = itemElement.getBoundingClientRect()
-  const containerRect = parentElement.getBoundingClientRect()
+  const elementRect = itemElement ? itemElement.getBoundingClientRect() : null
+  const containerRect = parentElement ? parentElement.getBoundingClientRect() : null
+  
+  if(elementRect === null || containerRect == null) return false
 
   if(
     elementRect.right >= containerRect.left &&

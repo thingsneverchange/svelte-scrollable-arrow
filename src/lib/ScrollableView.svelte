@@ -3,10 +3,12 @@ import { createEventDispatcher, onMount } from 'svelte';
 import Arrow from '$lib/Arrow.svelte'
 import isHex from '$lib/utils/isHex.js'
 import isRGBA from '$lib/utils/isRGBA.js'
-import type * as CSS from 'csstype';
 
-export let justifyContent : CSS.JustifyContent = "start";
-export let alignItems : CSS.AlignItems = "center";
+type justifyContent = "start"|"end"|"flex-start"|"flex-end"|"center"|"left"|"right"|"normal"|"space-between"|"space-around"|"space-evenly"|"stretch"
+type AlignItems = "normal"| "flex-start"|"flex-end"|"center"|"start"|"end"|"self-start"|"self-end"|"baseline"|"first baseline"|"last baseline"|"stretch"|"safe"|"unsafe"
+
+export let justifyContent : justifyContent = "start";
+export let alignItems : AlignItems = "center";
 export let shadow : boolean = true
 export let shadowColor : string = "rgba(0,0,0,0.5)";
 export let arrow : boolean = true;
@@ -27,7 +29,7 @@ export { classNames as class }
 
 const dispatch = createEventDispatcher();
 
-let _classNames : string = '';
+let classNames : string = '';
 let _element_scrollable : HTMLElement;
 
 let _showLeft : boolean  = false;
@@ -80,7 +82,7 @@ const __moveToRight = () : void => {
   // goes for 3/1 scroll of page width
   if((_element_scrollable.scrollWidth - _element_scrollable.scrollLeft) < 150){
     // if it only has 250 px to go, just go full
-    scrollValue = scrollable.scrollWidth
+    scrollValue = _element_scrollable.scrollWidth
   }
   __scrollTo(scrollValue)
   dispatch('next')
@@ -101,7 +103,7 @@ const __moveToLeft = () :void => {
 
 /// checks for scroll started, and ended
 let _scrollStarted = false;
-let _scrollStartTimer : typeof setTimeout;
+let _scrollStartTimer : ReturnType<typeof setTimeout> | null;
 const __scrollEventListener = () :void => {
 
   if(! _scrollStarted){
@@ -177,7 +179,7 @@ onMount( () :void => {
 </script>
 
 <div id="{id == "" ? id : ""}" style="{_internal_style}"
-    class="{_classNames ? _classNames : ''} scroll_view_container" on:mouseenter="{( () => {
+    class="{classNames ? classNames : ''} scroll_view_container" on:mouseenter="{( () => {
         __mouseOverListener(true)
       })}" on:mouseleave="{( () => {
           __mouseOverListener(false)
