@@ -116,6 +116,7 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | nav                  | `CustomEvent`  | `{detail}`            | Fires when either arrow is fired. (Can be triggered with keyboard arrows ←/→.)
 
 ## Event for Item (ScrollviewArrowItem)
+The event in `ScrollviewArrowItem` is limited to two events `visible` and `invisible`, and it doesn't handle any other event. You may consider adding any event to your item container, not this component.
 
 | Prop                   | Type      | Callback         | Description                                                    |
 | ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
