@@ -17,7 +17,7 @@ export let arrowSize : number = 18;
 export let arrowPosition : 'top' | 'middle' | 'bottom' = 'middle';
 export let id : string = "";
 export let threshold: number = 0;
-export let showArrowByDefault : boolean = false
+export let showArrowByDefault : boolean = true
 
 export let style: string = '';
 
@@ -150,8 +150,10 @@ onMount( () :void => {
   _scrollThreshold = threshold === 0 || threshold < 0 ? window.innerWidth / 3 : threshold // assign threshold on mount
 
   //check if there's scroll to go if not disable right
-  if(_element_scrollable.scrollWidth <= _element_scrollable.clientWidth){
+  if(_element_scrollable.scrollWidth == _element_scrollable.clientWidth){
     _showRight = false
+  }else{
+    _showRight = true
   }
   //check if there's scroll to go.
 
