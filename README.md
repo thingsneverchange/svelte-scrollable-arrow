@@ -31,7 +31,7 @@ This component works seamlessly on any device, including mobile, tablet, or desk
 
 ## Responsive
 
-<img src="https://images.themecloset.pictures/github/scrollable-arrow/responsive-preview-2.gif" style="width:100%"/>
+<img src="https://images.themecloset.pictures/github/scrollable-arrow/responsive-preview-2.gif" width="100%"/>
 
 ## Installation
 
