@@ -7,10 +7,10 @@
 
 </div>
 
-Svelte Scrollable Arrow effortlessly creates a horizontal navigation with sleek arrows for contents that require responsiveness. It aims to keep every child element as it is while wrapping the container with a scroll, and a navigation.
+Svelte Scrollable Arrow effortlessly creates a horizontal navigation with sleek arrows for contents that require responsiveness. It aims to keep every child element as it is while wrapping with a scrollable container, and a navigation.
 
 ## Problem It Solves
-Images, menus, and links can get unmanageable, requiring one to write a separate grid, list, or menus for wider and smaller devices. It solves this issue. You can still stuff all the menus or images in one line by making them scrollable.
+Images, menus, and buttons can get unmanageable, requiring one to write a separate grid, list, or menus for wider and smaller devices. It solves this issue. You can still stuff all the menus or images in one line by making them scrollable.
 
 ## Compatibility
 This component works seamlessly on any device, including mobile, tablet, or desktop. It efficiently handles various scroll triggers, thanks to its utilization of the [scroll event](https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event),
@@ -133,7 +133,7 @@ This option is enabled by default. If you see the `right arrow` button shows up,
 
 1. The component does not support custom arrow images, even though you can change the color & size
 2. You should wrap each item by `<ScrollableArrowItem/>` to make it work and be able to use the API of the component.
-3. The layout may break if the items in the content don't have fixed width, and height.
+3. The layout may break if the items in the content don't have fixed sizes(width/height)
 
 ## License
 [LIL License](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/License).
