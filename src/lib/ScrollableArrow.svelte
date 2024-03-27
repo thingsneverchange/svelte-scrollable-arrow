@@ -32,7 +32,6 @@ const dispatch = createEventDispatcher();
 
 let classNames : string = '';
 let _element_scrollable : HTMLElement;
-let instance_id = 0
 
 let _showLeft : boolean  = false;
 let _showRight : boolean  = showArrowByDefault ? true : false;
@@ -148,9 +147,6 @@ const __scrollCheckReachEnd = () => {
 }
 
 onMount( () :void => {
-  if(_element_scrollable){
-    _element_scrollable = _element_scrollable.parentNode.querySelector('.scroll_area')
-  }//added 1.1.0
 
   _scrollThreshold = threshold === 0 || threshold < 0 ? window.innerWidth / 3 : threshold // assign threshold on mount
 
