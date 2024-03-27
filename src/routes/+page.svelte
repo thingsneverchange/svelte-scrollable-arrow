@@ -3,7 +3,7 @@ import ScrollableArrow from '$lib/ScrollableArrow.svelte'
 import ScrollableArrowItem from '$lib/ScrollableArrowItem.svelte'
 </script>
 
-<ScrollableArrow shadow="{false}">
+<ScrollableArrow arrowShadow="{false}">
 
   <ScrollableArrowItem>
     <div class="example">
