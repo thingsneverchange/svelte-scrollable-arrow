@@ -10,7 +10,7 @@ type AlignItems = "normal"| "flex-start"|"flex-end"|"center"|"start"|"end"|"self
 export let justifyContent : justifyContent = "start";
 export let alignItems : AlignItems = "center";
 export let arrowShadow : boolean = true
-export let arrowShadowColor : string = "rgba(0,0,0,0.5)";
+export let arrowShadowColor : string = "rgba(0,0,0,0.7)";
 export let arrow : boolean = true;
 export let arrowColor : string = "#ffffff";
 export let arrowSize : number = 18;
@@ -174,13 +174,15 @@ onMount( () :void => {
   })
   window.addEventListener('keydown', (e:KeyboardEvent) :void => {
 
-      if(e.code === 'ArrowLeft' || e.code === 'ArrowRight'){
-        e.preventDefault()
-      }
-      if(_mouseOnScrollView){ // works only when mouse is over the container
+    if(_mouseOnScrollView){
+
+        if(e.code === 'ArrowLeft' || e.code === 'ArrowRight'){
+          e.preventDefault()
+        } // works only when mouse is over the container
+
         if(e.code === 'ArrowLeft') __moveToLeft()
         if(e.code === 'ArrowRight') __moveToRight()
-      }
+    }
   })
 
   /** drag event **/
@@ -209,24 +211,27 @@ onMount( () :void => {
 
 </script>
 
-<div id="{id == "" ? id : undefined}" style="{_internal_style}"
+<div id="{id != "" ? id : undefined}" style="{_internal_style}"
     class="{classNames ? classNames : ''}
-           {arrowShadow ? "scroll_view_shadow" : ""}
            scroll_view_container" on:mouseenter="{( () => {
         __mouseOverListener(true)
       })}" on:mouseleave="{( () => {
           __mouseOverListener(false)
         })}" role="region" aria-label="Scroll View" aria-live="polite">
     {#if _showLeft && arrow}
-      <div class="left arrow_container position-{arrowPosition}">
-        <button class="arrow" on:click="{__moveToLeft}" tabindex="0" on:keydown="{__moveToLeft}">
+      <div class="left arrow_container position-{arrowPosition} {arrowShadow ? "scroll_view_shadow" : ""}">
+        <button class="arrow" on:click="{__moveToLeft}" tabindex="0" on:keydown="{(()=> {
+            /// disabled becuase we have keyboard event
+          })}">
           <Arrow color="{arrowColor}" size="{arrowSize.toString()}px" direction="left"/>
         </button>
       </div>
     {/if}
     {#if _showRight && arrow}
-      <div class="right arrow_container position-{arrowPosition}">
-        <button class="arrow" on:click="{__moveToRight}" tabindex="0" on:keydown="{__moveToRight}">
+      <div class="right arrow_container position-{arrowPosition} {arrowShadow ? "scroll_view_shadow" : ""}">
+        <button class="arrow" on:click="{__moveToRight}" tabindex="0"  on:keydown="{(()=> {
+            /// disabled becuase we have keyboard event
+          })}">
           <Arrow color="{arrowColor}" size="{arrowSize.toString()}px" direction="Right"/>
         </button>
       </div>
@@ -243,9 +248,9 @@ onMount( () :void => {
 .scroll_view_container{position:relative}
 .scroll_view_container button{background-color:transparent; padding:0px;border:0px;cursor:pointer}
 .scroll_view_container .arrow_container{z-index:9999;width:0px;height:100%;position:absolute;top:0px;cursor:pointer}
-.scroll_view_container .arrow_container.scroll_view_shadow{width:30px;}
-.scroll_view_container .arrow_container.left{left:0px;padding-left:15px;background-image:linear-gradient(to left, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
-.scroll_view_container .arrow_container.right{right:0px;padding-right:15px;background-image:linear-gradient(to right, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
+.scroll_view_container .arrow_container.left{left:0px;background-image:linear-gradient(to left, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
+.scroll_view_container .arrow_container.right{right:0px;background-image:linear-gradient(to right, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
+.scroll_view_container .arrow_container.scroll_view_shadow{width:60px;}
 
 .scroll_view_container .arrow_container.right .arrow{float:right;position:absolute;right:15px;}
 .scroll_view_container .arrow_container.left .arrow{float:right;position:absolute;left:15px;}

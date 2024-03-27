@@ -1,3 +1,9 @@
+## 1.1.3
+
+1. `.scroll_view_shadow` class was mistakenly attached to container when it should be attahced to the arrow.
+2. ID was not setting as `id == "" ? id : ""` should be `id != "" ? id : ""`.
+3. Fixed the issue where the arrow gets triggered by a keyboard after a click on it.
+
 ## 1.1.0
 
 1. ID was visible even when there's no value set up.

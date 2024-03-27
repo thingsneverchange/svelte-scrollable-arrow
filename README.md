@@ -20,7 +20,7 @@ This component works seamlessly on any device, including mobile, tablet, or desk
 - Built-in arrows (←/→) ✨
 - Touchevents ✨
 
-- Version 1.1.0 now supports the drag event on Desktop. 
+- Version 1.1.0 now supports the drag event on Desktop.
 
 And of course, this component is type-safe.
 
@@ -87,7 +87,7 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | justifyContent                  |  `"start"⎮"end"⎮"flex-start"⎮"flex-end"⎮"center"⎮"left"⎮"right"⎮"normal"⎮"space-between"⎮"space-around"⎮"space-evenly"⎮"stretch`     | `"start"`      | Basically the same as `justify-content`. Sets how the items are aligned horizontally.             |
 | alignItems                  |  `"normal"⎮ "flex-start"⎮"flex-end"⎮"center"⎮"start"⎮"end"⎮"self-start"⎮"self-end"⎮"baseline"⎮"first baseline"⎮"last baseline"⎮"stretch"⎮"safe"⎮"unsafe"`| `"center"` | Basically same as `align-items`. Sets how the items are aligned vertically.             |
 | arrowShadow                  | `boolean`   | `true`            | Enables the shadow behind each arrow. If disabled, ShadowColor has no effect.                  |
-| arrowShadowColor                  | `string`   | `"rgba(0,0,0,0.5)"`            | Only accepts a RGBA color for the shadow behind each arrow.                  |
+| arrowShadowColor                  | `string`   | `"rgba(0,0,0,0.7)"`            | Only accepts a RGBA color for the shadow behind each arrow.                  |
 | arrow                  | `boolean`     | `true`          | Show the arrow on and off                                         |
 | arrowColor                  | `string`     | `"#ffffff"`          | Hex Color for the arrow                                          |
 | arowSize                  | `number`     |  `18`          | Size of each arrow (px)                                          |
