@@ -106,25 +106,25 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 
 ## Event for Container (ScrollviewArrow)
 
-| Prop                   | Type      | Callback         | Description                                                    |
-| ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
-| scroll                  | `CustomEvent`     |  `{detail}`          | 	Fires when the scroll event in the container is fired. This also fires when a user scrolls through the container without clicking the arrow. (Keyboard arrows, touch gestures, and mouse wheels.) )                             |
-| scrollStart                  | `CustomEvent`     |  `{detail}`          | 	Fires once when the scroll event is fired. This is different from `scroll` as `scroll` fires on scroll.                             |
-| scrollEnd                  | `CustomEvent`     |  `{detail}`          | 	Fires 1 second after the scroll event is ended.                             |
-| reachedEnd                  | `CustomEvent`     |  `{detail}`          | 	Fires when the scroller reached at the end.                   |
-| mouseenter                  | `CustomEvent`  | `{detail}`            | Fires when the mouse enters the container
-| mouseleave                  | `CustomEvent`  | `{detail}`            | Fires when the mouse leaves the container
-| next                  | `CustomEvent`  | `{detail}`            | Fires when the `next arrow` is fired. (Can be triggered with a keyboard arrow →.)
-| prev                  | `CustomEvent`  | `{detail}`            | Fires when the `prev arrow` is fired. (Can be triggered with a keyboard arrow ←.)
-| nav                  | `CustomEvent`  | `{detail}`            | Fires when either arrow is fired. (Can be triggered with keyboard arrows ←/→.)
+| Prop                   | Type          | Description                                                    |
+| ---------------------- | --------- | -------------------------------------------------------------- |
+| scroll                  | `CustomEvent`       | 	Fires when the scroll event in the container is fired. This also fires when a user scrolls through the container without clicking the arrow. (Keyboard arrows, touch gestures, and mouse wheels.) )                             |
+| scrollStart                  | `CustomEvent`        | 	Fires once when the scroll event is fired. This is different from `scroll` as `scroll` fires on scroll.                             |
+| scrollEnd                  | `CustomEvent`          | 	Fires 1 second after the scroll event is ended.                             |
+| reachedEnd                  | `CustomEvent`         | 	Fires when the scroller reached at the end.                   |
+| mouseenter                  | `CustomEvent`          | Fires when the mouse enters the container
+| mouseleave                  | `CustomEvent`            | Fires when the mouse leaves the container
+| next                  | `CustomEvent`       | Fires when the `next arrow` is fired. (Can be triggered with a keyboard arrow →.)
+| prev                  | `CustomEvent`           | Fires when the `prev arrow` is fired. (Can be triggered with a keyboard arrow ←.)
+| nav                  | `CustomEvent`         | Fires when either arrow is fired. (Can be triggered with keyboard arrows ←/→.)
 
 ## Event for Item (ScrollviewArrowItem)
 The event in `ScrollviewArrowItem` is limited to two events `visible` and `invisible`. It doesn't handle any other event. You may consider adding the event to your item container, not this component.
 
-| Prop                   | Type      | Callback         | Description                                                    |
-| ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
-| visible                  | `CustomEvent`     |  `{detail}`          | Fires when the item is visible                             |
-| invisible                  | `CustomEvent`  | `{detail}`            | Fires when the item is not visible
+| Prop                   | Type               | Description                                                    |
+| ---------------------- | ---------  | -------------------------------------------------------------- |
+| visible                  | `CustomEvent`             | Fires when the item is visible                             |
+| invisible                  | `CustomEvent`           | Fires when the item is not visible
 
 ### Note about  the `showArrowByDefault` option.
 This option is enabled by default. If you see the `right arrow` button showing up and disappearing immediately after, it means there are not enough scrollable contents. As it relies on the `onMount` lifecycle, this flickering is inevitable. You can disable it (not completely, but only when there are not enough contents to scroll) with this option. The recommended way is to make it `true` for smaller window sizes such as mobile, or tablets, and `false` for the wider views such as desktop.
