@@ -135,6 +135,9 @@ This option is enabled by default. If you see the `right arrow` button showing u
 2. You should wrap each item by `<ScrollableArrowItem/>` to make it work and be able to use the API of the component.
 3. The layout may break if the items in the content don't have fixed a size (either width or height)
 
+## Version Change LOG
+[1.1.0](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md?plain=1#110)
+
 ## License
 [LIL License](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/License).
 

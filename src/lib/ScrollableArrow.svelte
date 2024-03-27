@@ -32,6 +32,7 @@ const dispatch = createEventDispatcher();
 
 let classNames : string = '';
 let _element_scrollable : HTMLElement;
+let instance_id = 0
 
 let _showLeft : boolean  = false;
 let _showRight : boolean  = showArrowByDefault ? true : false;
@@ -69,11 +70,12 @@ const __validateArrows = () : void => {
 
 }
 
-const __scrollTo = (value: number) :void => {
+const __scrollTo : (value: number, props?: { behavior: 'auto' | 'smooth'  }) => void
+    = (value, props) => {
 
   _element_scrollable.scrollTo({
     left: value,
-    behavior: 'smooth' // This makes the scrolling smooth
+    behavior: props?.behavior ? props.behavior : "smooth" // This makes the scrolling smooth
   });
 
 }
@@ -146,6 +148,9 @@ const __scrollCheckReachEnd = () => {
 }
 
 onMount( () :void => {
+  if(_element_scrollable){
+    _element_scrollable = _element_scrollable.parentNode.querySelector('.scroll_area')
+  }//added 1.1.0
 
   _scrollThreshold = threshold === 0 || threshold < 0 ? window.innerWidth / 3 : threshold // assign threshold on mount
 
@@ -180,16 +185,38 @@ onMount( () :void => {
         if(e.code === 'ArrowLeft') __moveToLeft()
         if(e.code === 'ArrowRight') __moveToRight()
       }
-
-
   })
+
+  /** drag event **/
+  let onDargPosition = 0
+  let onDargScrollPosition = 0
+  window.addEventListener('drag', (e:DragEvent) :void => {
+    if(e.screenX !== 0 && _element_scrollable){
+      if(onDargPosition === 0){
+        onDargPosition = e.screenX
+        onDargScrollPosition = _element_scrollable.scrollLeft
+      }else{
+        __scrollTo(onDargScrollPosition + (e.screenX - onDargPosition), {
+          behavior: 'auto'
+        })
+      }
+    }
+  })
+  window.addEventListener('dragend', (e:DragEvent) :void => {
+    onDargPosition = 0
+    onDargScrollPosition = 0
+  })
+  /** drag event **/
+
 })
 
 
 </script>
 
-<div id="{id == "" ? id : ""}" style="{_internal_style}"
-    class="{classNames ? classNames : ''} scroll_view_container" on:mouseenter="{( () => {
+<div id="{id == "" ? id : undefined}" style="{_internal_style}"
+    class="{classNames ? classNames : ''}
+           {arrowShadow ? "scroll_view_shadow" : ""}
+           scroll_view_container" on:mouseenter="{( () => {
         __mouseOverListener(true)
       })}" on:mouseleave="{( () => {
           __mouseOverListener(false)
@@ -217,14 +244,15 @@ onMount( () :void => {
 
 <style>
 
-.scroll_view_container{position:relative;}
+.scroll_view_container{position:relative}
 .scroll_view_container button{background-color:transparent; padding:0px;border:0px;cursor:pointer}
-.scroll_view_container .arrow_container{z-index:9999;width:90px;height:100%;position:absolute;top:0px;cursor:pointer}
+.scroll_view_container .arrow_container{z-index:9999;width:0px;height:100%;position:absolute;top:0px;cursor:pointer}
+.scroll_view_container .arrow_container.scroll_view_shadow{width:30px;}
 .scroll_view_container .arrow_container.left{left:0px;padding-left:15px;background-image:linear-gradient(to left, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
 .scroll_view_container .arrow_container.right{right:0px;padding-right:15px;background-image:linear-gradient(to right, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
 
-.scroll_view_container .arrow_container.right .arrow{float:right;position:absolute;right:20px;}
-.scroll_view_container .arrow_container.left .arrow{float:right;position:absolute;left:20px;}
+.scroll_view_container .arrow_container.right .arrow{float:right;position:absolute;right:15px;}
+.scroll_view_container .arrow_container.left .arrow{float:right;position:absolute;left:15px;}
 .scroll_view_container .arrow_container.position-top .arrow{top:10px}
 .scroll_view_container .arrow_container.position-center .arrow{top:50%;transform:translateY(-50%)}
 .scroll_view_container .arrow_container.position-bottom .arrow{right:20px;bottom:10px;}
