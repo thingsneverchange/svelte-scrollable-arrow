@@ -7,7 +7,7 @@
 
 </div>
 
-Svelte Scrollable Arrow effortlessly creates a horizontal navigation with sleek arrows for contents that require responsiveness. It aims to keep every child element as it is while wrapping with a scrollable container, and a navigation.
+Svelte Scrollable Arrow effortlessly creates a horizontal navigation with sleek arrows for contents that require responsiveness. It aims to keep every child element as it is while wrapping with a scrollable container and a navigation.
 
 ## Problem It Solves
 Images, menus, and buttons can get unmanageable, requiring one to write a separate grid, list, or menus for wider and smaller devices. It solves this issue. You can still stuff all the menus or images in one line by making them scrollable.
@@ -119,7 +119,7 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | nav                  | `CustomEvent`  | `{detail}`            | Fires when either arrow is fired. (Can be triggered with keyboard arrows ←/→.)
 
 ## Event for Item (ScrollviewArrowItem)
-The event in `ScrollviewArrowItem` is limited to two events `visible` and `invisible`, and it doesn't handle any other event. You may consider adding any event to your item container, not this component.
+The event in `ScrollviewArrowItem` is limited to two events `visible` and `invisible`. It doesn't handle any other event. You may consider adding the event to your item container, not this component.
 
 | Prop                   | Type      | Callback         | Description                                                    |
 | ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
@@ -127,13 +127,15 @@ The event in `ScrollviewArrowItem` is limited to two events `visible` and `invis
 | invisible                  | `CustomEvent`  | `{detail}`            | Fires when the item is not visible
 
 ### Note about  the `showArrowByDefault` option.
-This option is enabled by default. If you see the `right arrow` button shows up, and disappears immediately it means there are not enough scrollable contents. As it relies on the `onMount` lifecycle, this flickering is inevitable. You can disable it (not completely, but only when there are not enough contents to scroll) with this option. The recommended way is to make it `true` for smaller window sizes such as mobile, or tablets, and `false` for the wider views such as desktop.
+This option is enabled by default. If you see the `right arrow` button showing up and disappearing immediately after, it means there are not enough scrollable contents. As it relies on the `onMount` lifecycle, this flickering is inevitable. You can disable it (not completely, but only when there are not enough contents to scroll) with this option. The recommended way is to make it `true` for smaller window sizes such as mobile, or tablets, and `false` for the wider views such as desktop.
 
 ## Limitations & Things to do
 
-1. The component does not support custom arrow images, even though you can change the color & size
+1. The component does not support custom arrow images, even though you can change the color & size.
 2. You should wrap each item by `<ScrollableArrowItem/>` to make it work and be able to use the API of the component.
-3. The layout may break if the items in the content don't have fixed sizes(width/height)
+3. The layout may break if the items in the content don't have fixed a size (either width or height)
 
 ## License
 [LIL License](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/License).
+
+https://yongju.me

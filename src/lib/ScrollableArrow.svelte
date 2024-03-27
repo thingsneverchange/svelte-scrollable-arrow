@@ -157,7 +157,7 @@ onMount( () :void => {
   }
   //check if there's scroll to go.
 
-  _element_scrollable.addEventListener('scroll', () => {
+  _element_scrollable.addEventListener('scroll', () : void => {
 
     __validateArrows()
     __scrollEventListener()
@@ -166,12 +166,12 @@ onMount( () :void => {
 
   })
 
-  window.addEventListener('resize', () => {
+  window.addEventListener('resize', (): void => {
 
     __validateArrows()
 
   })
-  window.addEventListener('keydown', (e:KeyboardEvent) => {
+  window.addEventListener('keydown', (e:KeyboardEvent) :void => {
 
       if(e.code === 'ArrowLeft' || e.code === 'ArrowRight'){
         e.preventDefault()
