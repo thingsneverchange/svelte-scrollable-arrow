@@ -194,7 +194,7 @@ onMount( () :void => {
         onDargPosition = e.screenX
         onDargScrollPosition = _element_scrollable.scrollLeft
       }else{
-        __scrollTo(onDargScrollPosition + (e.screenX - onDargPosition), {
+        __scrollTo(onDargScrollPosition - (e.screenX - onDargPosition), {
           behavior: 'auto'
         })
       }
@@ -250,7 +250,7 @@ onMount( () :void => {
 .scroll_view_container .arrow_container{z-index:9999;width:0px;height:100%;position:absolute;top:0px;cursor:pointer}
 .scroll_view_container .arrow_container.left{left:0px;background-image:linear-gradient(to left, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
 .scroll_view_container .arrow_container.right{right:0px;background-image:linear-gradient(to right, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
-.scroll_view_container .arrow_container.scroll_view_shadow{width:60px;}
+.scroll_view_container .arrow_container.scroll_view_shadow{width:40px;}
 
 .scroll_view_container .arrow_container.right .arrow{float:right;position:absolute;right:15px;}
 .scroll_view_container .arrow_container.left .arrow{float:right;position:absolute;left:15px;}
