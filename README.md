@@ -110,12 +110,17 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 
 | Prop                   | Type          | Description                                                    |
 | ---------------------- | --------- | -------------------------------------------------------------- |
-| scroll                  | `CustomEvent`       | 	Fires when the scroll event in the container is fired. This also fires when a user scrolls through the container without clicking the arrow. (Keyboard arrows, touch gestures, and mouse wheels.) )                             |
+| load                  | `CustomEvent`       | 	Fires when the component is mounted.                      |
+| scroll                  | `CustomEvent`       | 	Fires when the scroll event in the container is fired. This also fires when a user scrolls through the container without clicking the arrow. (Keyboard arrows, touch gestures, and mouse wheels.)                            |
 | scrollStart                  | `CustomEvent`        | 	Fires once when the scroll event is fired. This is different from `scroll` as `scroll` fires on scroll.                             |
 | scrollEnd                  | `CustomEvent`          | 	Fires 1 second after the scroll event is ended.                             |
 | reachedEnd                  | `CustomEvent`         | 	Fires when the scroller reached at the end.                   |
-| mouseenter                  | `CustomEvent`          | Fires when the mouse enters the container
-| mouseleave                  | `CustomEvent`            | Fires when the mouse leaves the container
+| reachedNearEnd                  | `CustomEvent`         | 	Fires when there's one arrow left to go.                   |
+| mouseenter                  | `CustomEvent`          | Fires when the mouse enters the container |
+| mouseleave                  | `CustomEvent`            | Fires when the mouse leaves the container |
+| dragStart                  | `CustomEvent`            | Fires when `touchEvent` and `dragEvent` are triggered. |
+| dragEnd                  | `CustomEvent`            | Fires when `touchEvent` and `dragEvent` ended. |
+| mouseleave                  | `CustomEvent`            | Fires when the mouse leaves the container |
 | next                  | `CustomEvent`       | Fires when the `next arrow` is fired. (Can be triggered with a keyboard arrow →.)
 | prev                  | `CustomEvent`           | Fires when the `prev arrow` is fired. (Can be triggered with a keyboard arrow ←.)
 | nav                  | `CustomEvent`         | Fires when either arrow is fired. (Can be triggered with keyboard arrows ←/→.)
@@ -138,7 +143,7 @@ This option is enabled by default. If you see the `right arrow` button showing u
 3. The layout may break if the items in the content don't have a fixed size (either width or height)
 
 ## Version Change LOG
-[[1.1.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#110) Moved to 1.1.0 as there was a new drag event added for desktop.
+[[1.1.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md?plain=1#110) Moved to 1.1.0 as there was a new drag event added for desktop.
 [[1.2.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#120) Added new events `dragEnd`, `dragStart`, `reachNearEnd`, `load`. Removed the scrollbar on Safari, Firefox, iPhone Safari, and Edge.
 
 ## License
