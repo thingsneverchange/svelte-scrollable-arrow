@@ -79,7 +79,7 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 
 ```
 
-## Props for Container (ScrollviewArrow)
+## Props for Container (ScrollableArrow)
 
 | Prop                   | Type      | Default         | Description                                                    |
 | ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
@@ -97,7 +97,7 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | class                  | `string`  | `""`            | Container classes    
 | style                  | `string`  | `""`            | Container styles
 
-## Props for Item (ScrollviewArrowItem)
+## Props for Item (ScrollableArrow)
 
 | Prop                   | Type      | Default         | Description                                                    |
 | ---------------------- | --------- | --------------- | -------------------------------------------------------------- |
@@ -105,7 +105,7 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | class                  | `string`  | `""`            | Item classes    
 | style                  | `string`  | `""`            | Item styles
 
-## Event for Container (ScrollviewArrow)
+## Event for Container (ScrollableArrow)
 
 | Prop                   | Type          | Description                                                    |
 | ---------------------- | --------- | -------------------------------------------------------------- |
@@ -123,8 +123,8 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | prev                  | `CustomEvent`           | Fires when the `prev arrow` is fired. (Can be triggered with a keyboard arrow ←.)
 | nav                  | `CustomEvent`         | Fires when either arrow is fired. (Can be triggered with keyboard arrows ←/→.)
 
-## Event for Item (ScrollviewArrowItem)
-The event in `ScrollviewArrowItem` is limited to two events `visible` and `invisible`. It doesn't handle any other event. You may consider adding the event to your item container, not this component.
+## Event for Item (ScrollableArrowItem)
+The event in `ScrollableArrowItem` is limited to two events `visible` and `invisible`. It doesn't handle any other event. You may consider adding the event to your item container, not this component.
 
 | Prop                   | Type               | Description                                                    |
 | ---------------------- | ---------  | -------------------------------------------------------------- |
