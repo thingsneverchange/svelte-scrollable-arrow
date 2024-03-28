@@ -140,7 +140,7 @@ const __mouseOverListener = (hovered: boolean) :void => {
 }
 
 let _reched_end = false
-let _reach_near_end
+let _reach_near_end = false
 const __scrollCheckReachEnd = () => {
   let scrollRemaining = Math.abs(_element_scrollable.scrollWidth - _element_scrollable.scrollLeft - _element_scrollable.clientWidth)
   if(scrollRemaining < 1 && ! _reched_end ){
@@ -203,7 +203,6 @@ onMount( () :void => {
   /** drag event **/
   let onDargPosition : number = 0
   let onDargScrollPosition : number = 0
-  let dragStarted : number = 0
   _element_scrollable.addEventListener('drag', (e:DragEvent) :void => {
     if(e.screenX !== 0 && _element_scrollable){
       if(onDargPosition === 0){
@@ -217,16 +216,16 @@ onMount( () :void => {
       }
     }
   })
-  _element_scrollable.addEventListener('dragend', (e:DragEvent) :void => {
+  _element_scrollable.addEventListener('dragend', () :void => {
     onDargPosition = 0
     onDargScrollPosition = 0
     dispatch('dragEnd')
   })
 
-  _element_scrollable.addEventListener('touchstart', (e) :void => {
+  _element_scrollable.addEventListener('touchstart', () :void => {
     dispatch('dragStart')
   })
-  _element_scrollable.addEventListener('touchend', (e) :void => {
+  _element_scrollable.addEventListener('touchend', () :void => {
     dispatch('dragEnd')
   })
 

@@ -112,7 +112,7 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | load                  | `CustomEvent`       | 	Fires when the component is mounted.                      |
 | scroll                  | `CustomEvent`       | 	Fires when the scroll event in the container is fired. This also fires when a user scrolls through the container without clicking the arrow. (Keyboard arrows, touch gestures, and mouse wheels.)                            |
 | scrollStart                  | `CustomEvent`        | 	Fires once when the scroll event is fired. This is different from `scroll` as `scroll` fires on scroll.                             |
-| scrollEnd                  | `CustomEvent`          | 	Fires 1 second after the scroll event is ended.                             |
+| scrollEnd                  | `CustomEvent`          | 	Fires 1 second after the scroll event is end.                             |
 | reachedEnd                  | `CustomEvent`         | 	Fires when the scroller reached at the end.                   |
 | reachedNearEnd                  | `CustomEvent`         | 	Fires when there's only one arrow left to go.                   |
 | mouseenter                  | `CustomEvent`          | Fires when the mouse enters the container |
