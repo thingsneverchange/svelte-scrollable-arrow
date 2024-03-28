@@ -54,6 +54,8 @@ if(arrowShadow){
 
 const __validateArrows = () : void => {
 
+  let defaultThreshold = window.innerWidth < 900 ? (window.innerWidth / 2) : (window.innerWidth / 3)
+
   if(_element_scrollable){
     if(_element_scrollable.scrollLeft > 30){
       _showLeft = true
@@ -66,6 +68,9 @@ const __validateArrows = () : void => {
       _showRight = true
     }
   }
+
+  _scrollThreshold = threshold === 0 || threshold < 0 ? defaultThreshold : threshold
+
 
 }
 
@@ -135,11 +140,20 @@ const __mouseOverListener = (hovered: boolean) :void => {
 }
 
 let _reched_end = false
+let _reach_near_end
 const __scrollCheckReachEnd = () => {
   let scrollRemaining = Math.abs(_element_scrollable.scrollWidth - _element_scrollable.scrollLeft - _element_scrollable.clientWidth)
   if(scrollRemaining < 1 && ! _reched_end ){
     dispatch('reachedEnd')
     _reched_end = true
+  }
+  // for reachedEnd -> Check if the reaming is bigger than the threshold, as it means there's on loop to go, and close to end.
+  if(scrollRemaining < _scrollThreshold && _reach_near_end === false){
+    _reach_near_end = true
+    dispatch('reachedNearEnd')
+  }
+  if(scrollRemaining > _scrollThreshold){
+    _reach_near_end = false
   }
   if(scrollRemaining > 5){//this is necesarry as you don't know the direction.
     _reched_end = false
@@ -148,7 +162,14 @@ const __scrollCheckReachEnd = () => {
 
 onMount( () :void => {
 
-  _scrollThreshold = threshold === 0 || threshold < 0 ? window.innerWidth / 3 : threshold // assign threshold on mount
+  dispatch('load')
+
+  window.addEventListener('resize', (): void => {
+
+    __validateArrows()
+
+  })
+   // assign threshold on mount
 
   //check if there's scroll to go if not disable right
   if(_element_scrollable.scrollWidth == _element_scrollable.clientWidth){
@@ -166,12 +187,6 @@ onMount( () :void => {
     dispatch('scroll')
 
   })
-
-  window.addEventListener('resize', (): void => {
-
-    __validateArrows()
-
-  })
   window.addEventListener('keydown', (e:KeyboardEvent) :void => {
 
     if(_mouseOnScrollView){
@@ -186,13 +201,15 @@ onMount( () :void => {
   })
 
   /** drag event **/
-  let onDargPosition = 0
-  let onDargScrollPosition = 0
-  window.addEventListener('drag', (e:DragEvent) :void => {
+  let onDargPosition : number = 0
+  let onDargScrollPosition : number = 0
+  let dragStarted : number = 0
+  _element_scrollable.addEventListener('drag', (e:DragEvent) :void => {
     if(e.screenX !== 0 && _element_scrollable){
       if(onDargPosition === 0){
         onDargPosition = e.screenX
         onDargScrollPosition = _element_scrollable.scrollLeft
+        dispatch('dragStart')
       }else{
         __scrollTo(onDargScrollPosition - (e.screenX - onDargPosition), {
           behavior: 'auto'
@@ -200,11 +217,18 @@ onMount( () :void => {
       }
     }
   })
-  window.addEventListener('dragend', (e:DragEvent) :void => {
+  _element_scrollable.addEventListener('dragend', (e:DragEvent) :void => {
     onDargPosition = 0
     onDargScrollPosition = 0
+    dispatch('dragEnd')
   })
-  /** drag event **/
+
+  _element_scrollable.addEventListener('touchstart', (e) :void => {
+    dispatch('dragStart')
+  })
+  _element_scrollable.addEventListener('touchend', (e) :void => {
+    dispatch('dragEnd')
+  })
 
 })
 
@@ -244,7 +268,6 @@ onMount( () :void => {
 </div>
 
 <style>
-
 .scroll_view_container{position:relative}
 .scroll_view_container button{background-color:transparent; padding:0px;border:0px;cursor:pointer}
 .scroll_view_container .arrow_container{z-index:9999;width:0px;height:100%;position:absolute;top:0px;cursor:pointer}
@@ -260,5 +283,23 @@ onMount( () :void => {
 
 .scroll_view_container .scroll_area .content{display:flex; align-items: var(--scrollview-arrow-align-items); justify-content: var(--scrollview-arrow-justify-content)}
 .scroll_view_container .scroll_area{overflow:scroll;position:relative;width:100%;}
-.scroll_view_container .scroll_area::-webkit-scrollbar {display:none}
+.scroll_view_container .scroll_area {
+  /* Hide scrollbar for WebKit (Safari, Chrome) */
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS */
+
+  /* Hide scrollbar for Firefox */
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.scroll_view_container .scroll_area::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for WebKit (Safari, Chrome) */
+}
+
+.scroll_view_container .scroll_area::-moz-scrollbar {
+  display: none; /* Hide scrollbar for Firefox */
+}
+
 </style>

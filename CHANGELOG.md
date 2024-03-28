@@ -1,3 +1,16 @@
+## 1.2.0
+
+1. Dispatch `dragStart` and `dragEnd` (mobile/desktop)
+2. Added `reachedNearEnd` that fires when there's only one arrow to go.
+3. Added `load` that fires when the component is mounted.
+4. Fixed bug where the scrollbar appears on Firefox, Safari & Mobile Safari.
+5. Changed the default scroll threshold to `1/2` from `1/3` on smaller devices.
+
+
+## 1.1.4
+
+1. Drag direction was set backwards.
+
 ## 1.1.3
 
 1. `.scroll_view_shadow` class was mistakenly attached to container when it should be attahced to the arrow.

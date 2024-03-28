@@ -138,7 +138,8 @@ This option is enabled by default. If you see the `right arrow` button showing u
 3. The layout may break if the items in the content don't have a fixed size (either width or height)
 
 ## Version Change LOG
-[[1.1.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md?plain=1#110) Moved to 1.1.0 as there was a new drag event added for desktop.
+[[1.1.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#110) Moved to 1.1.0 as there was a new drag event added for desktop.
+[[1.2.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#120) Added new events `dragEnd`, `dragStart`, `reachNearEnd`, `load`. Removed the scrollbar on Safari, Firefox, iPhone Safari, and Edge.
 
 ## License
 [LIL License](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/License).
