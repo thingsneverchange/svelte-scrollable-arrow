@@ -19,7 +19,6 @@ This component works seamlessly on any device, including mobile, tablet, or desk
 - Keyboard arrow events ✨ (Only if mouse is over the container to prevent every instance from listening to this event)
 - Built-in arrows (←/→) ✨
 - Touchevents ✨
-
 - Version 1.1.0 now supports the drag event on Desktop.
 
 And of course, this component is type-safe.
@@ -90,7 +89,7 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | arrowShadowColor                  | `string`   | `"rgba(0,0,0,0.7)"`            | Only accepts a RGBA color for the shadow behind each arrow.                  |
 | arrow                  | `boolean`     | `true`          | Show the arrow on and off                                         |
 | arrowColor                  | `string`     | `"#ffffff"`          | Hex Color for the arrow                                          |
-| arowSize                  | `number`     |  `18`          | Size of each arrow (px)                                          |
+| arrowSize                  | `number`     |  `18`          | Size of each arrow (px)                                          |
 | arrowPosition        | `"top" ⎮ "center" ⎮ "bottom'"`     |  `"center"`          | 	The position for each arrow.                              |
 | threshold                  | `number`     |  `0`          | The number of the scroll value required to move through container. If left unset, the default is set to 1/3 of the container's width.                              |
 | showArrowByDefault                  | `boolean`     |  `true`          |  Shows the `right arrow` button on load, and it remains if the container has overflowing contents, and gets removed if it doesn't.                            |
@@ -115,12 +114,11 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | scrollStart                  | `CustomEvent`        | 	Fires once when the scroll event is fired. This is different from `scroll` as `scroll` fires on scroll.                             |
 | scrollEnd                  | `CustomEvent`          | 	Fires 1 second after the scroll event is ended.                             |
 | reachedEnd                  | `CustomEvent`         | 	Fires when the scroller reached at the end.                   |
-| reachedNearEnd                  | `CustomEvent`         | 	Fires when there's one arrow left to go.                   |
+| reachedNearEnd                  | `CustomEvent`         | 	Fires when there's only one arrow left to go.                   |
 | mouseenter                  | `CustomEvent`          | Fires when the mouse enters the container |
 | mouseleave                  | `CustomEvent`            | Fires when the mouse leaves the container |
 | dragStart                  | `CustomEvent`            | Fires when `touchEvent` and `dragEvent` are triggered. |
 | dragEnd                  | `CustomEvent`            | Fires when `touchEvent` and `dragEvent` ended. |
-| mouseleave                  | `CustomEvent`            | Fires when the mouse leaves the container |
 | next                  | `CustomEvent`       | Fires when the `next arrow` is fired. (Can be triggered with a keyboard arrow →.)
 | prev                  | `CustomEvent`           | Fires when the `prev arrow` is fired. (Can be triggered with a keyboard arrow ←.)
 | nav                  | `CustomEvent`         | Fires when either arrow is fired. (Can be triggered with keyboard arrows ←/→.)
@@ -144,6 +142,7 @@ This option is enabled by default. If you see the `right arrow` button showing u
 
 ## Version Change LOG
 [[1.1.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md?plain=1#110) Moved to 1.1.0 as there was a new drag event added for desktop.
+
 [[1.2.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#120) Added new events `dragEnd`, `dragStart`, `reachNearEnd`, `load`. Removed the scrollbar on Safari, Firefox, iPhone Safari, and Edge.
 
 ## License
