@@ -1,3 +1,8 @@
+## 1.2.6
+
+1. Changed the default arrow threshold to `window.innerWidth - 50` for narrow screens.
+2. Added an explanation about the `Smooth Scrolling` option on Firefox.
+
 ## 1.2.4
 
 1. Added a measurement to remove the content highlight (user select).

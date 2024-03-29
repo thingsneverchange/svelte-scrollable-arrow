@@ -54,7 +54,7 @@ if(arrowShadow){
 
 const __validateArrows = () : void => {
 
-  let defaultThreshold = window.innerWidth < 900 ? (window.innerWidth / 2) : (window.innerWidth / 3)
+  let defaultThreshold = window.innerWidth < 900 ? (window.innerWidth - 50) : (window.innerWidth / 3)
 
     if(_element_scrollable){
       if(_element_scrollable.scrollLeft > 30){

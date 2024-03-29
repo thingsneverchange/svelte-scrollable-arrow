@@ -144,6 +144,7 @@ This option is enabled by default. If you see the `right arrow` button showing u
 1. The component does not support custom arrow images, even though you can change the color & size.
 2. You should wrap each item by `<ScrollableArrowItem/>` to make it work and be able to use the API of the component.
 3. The layout may break if the items in the content don't have a fixed size (either width or height)
+4. On Firefox, the `Smooth Scrolling` option may be turned off if you see the scrolling instantly move to another position. This can be fixed in `about:preferences`. On the `Browsers` tab, enable `Smooth Scrolling`. 
 
 ## Version Change LOG
 [[1.1.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md?plain=1#110) Moved to 1.1.0 as there was a new drag event added for desktop.<br>
