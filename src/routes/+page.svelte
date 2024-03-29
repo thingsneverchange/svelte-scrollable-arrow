@@ -12,7 +12,7 @@ const images = [
 ]
 </script>
 
-<ScrollableArrow arrowPosition="outside-top-right">
+<ScrollableArrow arrowPosition="outside-top-right" arrowShadow="{false}">
   {#each images as item}
     <ScrollableArrowItem style="padding:0px 10px;">
       <div class="example" style="background-image:url('{item}')">
