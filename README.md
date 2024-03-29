@@ -23,6 +23,11 @@ This component works seamlessly on any device, including mobile, tablet, or desk
 
 And of course, this component is type-safe.
 
+## Use Cases
+Basically, everywhere. It works like the SwiftUI's `ScrollView` except that it comes with an arrow navigation, which can be hidden with an option. Cards, images, menus, buttons, links, or even album covers and tags. For most cases, it just makes you forget how the web is designed in terms of responsiveness.
+
+On the version [[1.2.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#120), there was a new event added `reachNearEnd`. This opens the door for the horizontal endless scrolling.
+
 ## Demo
 
  <img src="https://images.themecloset.pictures/github/scrollable-arrow/preview.gif" alt="Svelte Scrollable Arrow" width="100%" />
@@ -90,7 +95,7 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | arrow                  | `boolean`     | `true`          | Show the arrow on and off                                         |
 | arrowColor                  | `string`     | `"#ffffff"`          | Hex Color for the arrow                                          |
 | arrowSize                  | `number`     |  `18`          | Size of each arrow (px)                                          |
-| arrowPosition        | `"top" ⎮ "center" ⎮ "bottom'"`     |  `"center"`          | 	The position for each arrow.                              |
+| arrowPosition        | `"top" ⎮ "center" ⎮ "bottom" ⎮ "outside-top-left" ⎮ "outside-top-right" ⎮  "outside-top-center" | "outside-top-space-between" `     |  `"center"`          | 	The position for each arrow.                              |
 | threshold                  | `number`     |  `0`          | The number of the scroll value required to move through container. If left unset, the default is set to 1/3 of the container's width.                              |
 | showArrowByDefault                  | `boolean`     |  `true`          |  Shows the `right arrow` button on load, and it remains if the container has overflowing contents, and gets removed if it doesn't.                            |
 | id                  | `string`     |  `""`          | 	ID for container.                              |
@@ -112,7 +117,7 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | load                  | `CustomEvent`       | 	Fires when the component is mounted.                      |
 | scroll                  | `CustomEvent`       | 	Fires when the scroll event in the container is fired. This also fires when a user scrolls through the container without clicking the arrow. (Keyboard arrows, touch gestures, and mouse wheels.)                            |
 | scrollStart                  | `CustomEvent`        | 	Fires once when the scroll event is fired. This is different from `scroll` as `scroll` fires on scroll.                             |
-| scrollEnd                  | `CustomEvent`          | 	Fires 1 second after the scroll event is end.                             |
+| scrollEnd                  | `CustomEvent`          | 	Fires 30ms after the scroll event ends.                             |
 | reachedEnd                  | `CustomEvent`         | 	Fires when the scroller reached at the end.                   |
 | reachedNearEnd                  | `CustomEvent`         | 	Fires when there's only one arrow left to go.                   |
 | mouseenter                  | `CustomEvent`          | Fires when the mouse enters the container |
@@ -142,8 +147,11 @@ This option is enabled by default. If you see the `right arrow` button showing u
 
 ## Version Change LOG
 [[1.1.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md?plain=1#110) Moved to 1.1.0 as there was a new drag event added for desktop.
-
 [[1.2.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#120) Added new events `dragEnd`, `dragStart`, `reachNearEnd`, `load`. Removed the scrollbar on Safari, Firefox, iPhone Safari, and Edge.
+[[1.2.4]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#124) Ghosting issue has been resolved. Images, and links do not create ghosting anymore. See more details in `CHANGELOG.md`. New options for `arrowPositions` are added.
+
+ <img src="https://images.themecloset.pictures/github/scrollable-arrow/preview-new-arrow-option.jpg" alt="Svelte Scrollable Arrow" width="100%" />
+
 
 ## License
 [LIL License](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/License).

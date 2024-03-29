@@ -1,3 +1,10 @@
+## 1.2.4
+
+1. Added a measurement to remove the content highlight (user select).
+2. Added a measurement for the image and link ghosting on drag. To fix this, we moved the `drag` event inside the `mouse` event. `dragStart` and `dragEnd` still work the same.
+3. Changed the `reachedEnd` threshold to 30ms
+4. Bug where the scroll event hang leaving 100~200px left has been fixed.
+
 ## 1.2.0
 
 1. Dispatch `dragStart` and `dragEnd` (mobile/desktop)

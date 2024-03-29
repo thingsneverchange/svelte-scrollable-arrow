@@ -49,3 +49,10 @@ onMount( () => {
 <div bind:this="{itemElement}" class="{isVisible ? 'visible' : ''} {classNames ? classNames : ''} item" id="{id != "" ? id :undefined}" style="{style != "" ? style : undefined}">
   <slot/>
 </div>
+<style>
+.item{
+  pointer-events:none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */}
+</style>

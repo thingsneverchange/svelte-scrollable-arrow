@@ -14,7 +14,7 @@ export let arrowShadowColor : string = "rgba(0,0,0,0.7)";
 export let arrow : boolean = true;
 export let arrowColor : string = "#ffffff";
 export let arrowSize : number = 18;
-export let arrowPosition : 'top' | 'center' | 'bottom' = 'center';
+export let arrowPosition : 'top' | 'center' | 'bottom' | "outside-top-left" | "outside-top-center" |"outside-top-right" | "outside-top-space-between" = 'center';
 export let id : string = "";
 export let threshold: number = 0;
 export let showArrowByDefault : boolean = true
@@ -56,18 +56,18 @@ const __validateArrows = () : void => {
 
   let defaultThreshold = window.innerWidth < 900 ? (window.innerWidth / 2) : (window.innerWidth / 3)
 
-  if(_element_scrollable){
-    if(_element_scrollable.scrollLeft > 30){
-      _showLeft = true
-    }else{
-      _showLeft = false
+    if(_element_scrollable){
+      if(_element_scrollable.scrollLeft > 30){
+        _showLeft = true
+      }else{
+        _showLeft = false
+      }
+      if((_element_scrollable.scrollWidth - _element_scrollable.offsetWidth) - _element_scrollable.scrollLeft <= 60){
+        _showRight = false
+      }else{
+        _showRight = true
+      }
     }
-    if((_element_scrollable.scrollWidth - _element_scrollable.offsetWidth) - _element_scrollable.scrollLeft <= 60){
-      _showRight = false
-    }else{
-      _showRight = true
-    }
-  }
 
   _scrollThreshold = threshold === 0 || threshold < 0 ? defaultThreshold : threshold
 
@@ -85,9 +85,9 @@ const __scrollTo : (value: number, props?: { behavior: 'auto' | 'smooth'  }) => 
 }
 
 const __moveToRight = () : void => {
-  let scrollValue : number = _element_scrollable.scrollLeft + (_scrollThreshold)
+  let scrollValue : number = _element_scrollable.scrollLeft + _scrollThreshold
   // goes for 3/1 scroll of page width
-  if((_element_scrollable.scrollWidth - _element_scrollable.scrollLeft) < 150){
+  if((_element_scrollable.scrollWidth - _element_scrollable.scrollLeft - window.innerWidth) - _scrollThreshold < 200){
     // if it only has 250 px to go, just go full
     scrollValue = _element_scrollable.scrollWidth
   }
@@ -97,10 +97,10 @@ const __moveToRight = () : void => {
 }
 
 const __moveToLeft = () :void => {
-  let scrollValue : number = _element_scrollable.scrollLeft - (_scrollThreshold)
+  let scrollValue : number = _element_scrollable.scrollLeft - _scrollThreshold
   // goes for 3/1 scroll of page width
-  if(_element_scrollable.scrollLeft < 150){
-    // if it only has 250 px to go, just go full
+  if(_element_scrollable.scrollLeft <= (_scrollThreshold + 250)){
+    // if it only has less than one arrow to go, just go full
     scrollValue = 0
   }
   __scrollTo(scrollValue)
@@ -124,8 +124,9 @@ const __scrollEventListener = () :void => {
 
   _scrollStartTimer = setTimeout( () => {
     dispatch('scrollEnd')
+    __validateArrows()
     _scrollStarted = false
-  }, 1000)// add a timer to listen for 1 seocnd of idleness
+  }, 30)// add a timer to listen for 1 seocnd of idleness
 }
 ////
 
@@ -160,9 +161,21 @@ const __scrollCheckReachEnd = () => {
   }
 }
 
+/// determine-arrow-position-and-class
+let arrowPositionClass = ""
+if((['top', 'center', 'bottom']).includes(arrowPosition)){
+  arrowPositionClass = 'default-arrow-position ' + arrowPosition
+}
+if(arrowPosition.startsWith('outside')){
+  arrowPositionClass = 'outside-arrow-position ' + arrowPosition
+}
+
+////
+
 onMount( () :void => {
 
   dispatch('load')
+  __validateArrows()
 
   window.addEventListener('resize', (): void => {
 
@@ -181,7 +194,6 @@ onMount( () :void => {
 
   _element_scrollable.addEventListener('scroll', () : void => {
 
-    __validateArrows()
     __scrollEventListener()
     __scrollCheckReachEnd()
     dispatch('scroll')
@@ -203,23 +215,47 @@ onMount( () :void => {
   /** drag event **/
   let onDargPosition : number = 0
   let onDargScrollPosition : number = 0
-  _element_scrollable.addEventListener('drag', (e:DragEvent) :void => {
-    if(e.screenX !== 0 && _element_scrollable){
-      if(onDargPosition === 0){
-        onDargPosition = e.screenX
-        onDargScrollPosition = _element_scrollable.scrollLeft
-        dispatch('dragStart')
-      }else{
-        __scrollTo(onDargScrollPosition - (e.screenX - onDargPosition), {
-          behavior: 'auto'
-        })
-      }
+  let onDrag : boolean = false
+  let isMouseInside : boolean = false
+  _element_scrollable.addEventListener('mousedown', (e) :void => {
+    onDrag = true
+    isMouseInside = true
+    if(onDrag){
+      dispatch('dragStart')
     }
   })
-  _element_scrollable.addEventListener('dragend', () :void => {
-    onDargPosition = 0
-    onDargScrollPosition = 0
-    dispatch('dragEnd')
+  _element_scrollable.addEventListener('mouseup', () :void => {
+    if(onDrag){
+      dispatch('dragEnd')
+      onDrag = false
+      onDargPosition = 0
+      onDargScrollPosition = 0
+    }
+
+  })
+  // Event listener for mouse leaving the container
+  _element_scrollable.addEventListener('mouseout', function(event) {
+    isMouseInside = false;
+    if(onDrag){
+      dispatch('dragEnd')
+      onDargPosition = 0
+      onDargScrollPosition = 0
+    }
+  });
+
+  _element_scrollable.addEventListener('mousemove', (e) :void => {
+    if(onDrag && isMouseInside){
+      if(e.screenX !== 0 && _element_scrollable){
+          if(onDargPosition === 0){
+            onDargPosition = e.screenX
+            onDargScrollPosition = _element_scrollable.scrollLeft
+          }else{
+            __scrollTo(onDargScrollPosition - (e.screenX - onDargPosition), {
+              behavior: 'auto'
+            })
+          }
+      }
+    }
   })
 
   _element_scrollable.addEventListener('touchstart', () :void => {
@@ -241,24 +277,31 @@ onMount( () :void => {
       })}" on:mouseleave="{( () => {
           __mouseOverListener(false)
         })}" role="region" aria-label="Scroll View" aria-live="polite">
-    {#if _showLeft && arrow}
-      <div class="left arrow_container position-{arrowPosition} {arrowShadow ? "scroll_view_shadow" : ""}">
-        <button class="arrow" on:click="{__moveToLeft}" tabindex="0" on:keydown="{(()=> {
-            /// disabled becuase we have keyboard event
-          })}">
-          <Arrow color="{arrowColor}" size="{arrowSize.toString()}px" direction="left"/>
-        </button>
-      </div>
-    {/if}
-    {#if _showRight && arrow}
-      <div class="right arrow_container position-{arrowPosition} {arrowShadow ? "scroll_view_shadow" : ""}">
-        <button class="arrow" on:click="{__moveToRight}" tabindex="0"  on:keydown="{(()=> {
-            /// disabled becuase we have keyboard event
-          })}">
-          <Arrow color="{arrowColor}" size="{arrowSize.toString()}px" direction="Right"/>
-        </button>
-      </div>
-    {/if}
+    <div class="arrow_container {arrowShadow ? "scroll_view_shadow" : ""} {arrowPositionClass}">
+
+      {#if _showLeft && arrow}
+        <div class="left arrow ">
+          <button on:click="{__moveToLeft}" tabindex="0" on:keydown="{(()=> {
+              /// disabled becuase we have keyboard event
+            })}">
+            <Arrow color="{arrowColor}" size="{arrowSize.toString()}px" direction="left"/>
+          </button>
+        </div>
+      {:else}
+        <div></div>
+      {/if}
+      {#if _showRight && arrow}
+        <div class="right arrow">
+          <button on:click="{__moveToRight}" tabindex="0"  on:keydown="{(()=> {
+              /// disabled becuase we have keyboard event
+            })}">
+            <Arrow color="{arrowColor}" size="{arrowSize.toString()}px" direction="Right"/>
+          </button>
+        </div>
+      {:else}
+        <div></div>
+      {/if}
+    </div>
     <div class="scroll_area" bind:this="{_element_scrollable}">
       <div class="content">
         <slot />
@@ -269,16 +312,26 @@ onMount( () :void => {
 <style>
 .scroll_view_container{position:relative}
 .scroll_view_container button{background-color:transparent; padding:0px;border:0px;cursor:pointer}
-.scroll_view_container .arrow_container{z-index:9999;width:0px;height:100%;position:absolute;top:0px;cursor:pointer}
-.scroll_view_container .arrow_container.left{left:0px;background-image:linear-gradient(to left, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
-.scroll_view_container .arrow_container.right{right:0px;background-image:linear-gradient(to right, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
-.scroll_view_container .arrow_container.scroll_view_shadow{width:40px;}
+.scroll_view_container .arrow_container{width:100%;line-height:100%;}
+.scroll_view_container .arrow_container.default-arrow-position .arrow{z-index:9999;width:0px;height:100%;position:absolute;top:0px;cursor:pointer}
+.scroll_view_container .arrow_container.default-arrow-position .left{left:0px;background-image:linear-gradient(to left, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
+.scroll_view_container .arrow_container.default-arrow-position .right{right:0px;background-image:linear-gradient(to right, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
+.scroll_view_container .arrow_container.default-arrow-position.scroll_view_shadow .arrow{width:40px;}
 
-.scroll_view_container .arrow_container.right .arrow{float:right;position:absolute;right:15px;}
-.scroll_view_container .arrow_container.left .arrow{float:right;position:absolute;left:15px;}
-.scroll_view_container .arrow_container.position-top .arrow{top:10px}
-.scroll_view_container .arrow_container.position-center .arrow{top:50%;transform:translateY(-50%)}
-.scroll_view_container .arrow_container.position-bottom .arrow{right:20px;bottom:10px;}
+.scroll_view_container .arrow_container.default-arrow-position .right button{position:absolute;right:15px;}
+.scroll_view_container .arrow_container.default-arrow-position .left button{position:absolute;left:15px;}
+.scroll_view_container .arrow_container.default-arrow-position.top button{top:10px}
+.scroll_view_container .arrow_container.default-arrow-position.center button{top:50%;transform:translateY(-50%)}
+.scroll_view_container .arrow_container.default-arrow-position.bottom button{bottom:10px;}
+
+.scroll_view_container .arrow_container.outside-arrow-position .left,
+.scroll_view_container .arrow_container.outside-arrow-position .right{margin-right:3px;margin-left:3px;}
+.scroll_view_container .arrow_container.outside-arrow-position{display:flex;padding:10px 0px;}
+.scroll_view_container .arrow_container.outside-arrow-position.outside-top-left{justify-content:left}
+.scroll_view_container .arrow_container.outside-arrow-position.outside-top-center{justify-content:center;}
+.scroll_view_container .arrow_container.outside-arrow-position.outside-top-right{justify-content:right}
+.scroll_view_container .arrow_container.outside-arrow-position.outside-top-space-between{justify-content:space-between;order: 2}
+.scroll_view_container .arrow_container.outside-arrow-position .arrow{display:inline-block;background-color: var(--scrollview-arrow-left-shadow);padding:9px 10px;border-radius:500px;}
 
 .scroll_view_container .scroll_area .content{display:flex; align-items: var(--scrollview-arrow-align-items); justify-content: var(--scrollview-arrow-justify-content)}
 .scroll_view_container .scroll_area{overflow:scroll;position:relative;width:100%;}
