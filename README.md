@@ -146,11 +146,13 @@ This option is enabled by default. If you see the `right arrow` button showing u
 3. The layout may break if the items in the content don't have a fixed size (either width or height)
 
 ## Version Change LOG
-[[1.1.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md?plain=1#110) Moved to 1.1.0 as there was a new drag event added for desktop.
-[[1.2.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#120) Added new events `dragEnd`, `dragStart`, `reachNearEnd`, `load`. Removed the scrollbar on Safari, Firefox, iPhone Safari, and Edge.
+[[1.1.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md?plain=1#110) Moved to 1.1.0 as there was a new drag event added for desktop.<br>
+[[1.2.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#120) Added new events `dragEnd`, `dragStart`, `reachNearEnd`, `load`. Removed the scrollbar on Safari, Firefox, iPhone Safari, and Edge.<br>
 [[1.2.4]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#124) Ghosting issue has been resolved. Images, and links do not create ghosting anymore. See more details in `CHANGELOG.md`. New options for `arrowPositions` are added.
 
- <img src="https://images.themecloset.pictures/github/scrollable-arrow/preview-new-arrow-option.jpg" alt="Svelte Scrollable Arrow" width="100%" />
+<i>The new `outside-top-right` arrow position option on `v1.2.4` (Comes with 4 positions)</i> 👇
+
+ <img src="https://images.themecloset.pictures/github/scrollable-arrow/preview-new-arrow-option.jpg" alt="Svelte Scrollable Arrow Preview" width="100%" />
 
 
 ## License
