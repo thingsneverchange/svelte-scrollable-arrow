@@ -95,7 +95,7 @@ All you have to do is to wrap each of your images, buttons or texts with `<Scrol
 | arrow                  | `boolean`     | `true`          | Show the arrow on and off                                         |
 | arrowColor                  | `string`     | `"#ffffff"`          | Hex Color for the arrow                                          |
 | arrowSize                  | `number`     |  `18`          | Size of each arrow (px)                                          |
-| arrowPosition        | `"top" ⎮ "center" ⎮ "bottom" ⎮ "outside-top-left" ⎮ "outside-top-right" ⎮  "outside-top-center" | "outside-top-space-between" `     |  `"center"`          | 	The position for each arrow.                              |
+| arrowPosition        | `"top" ⎮ "center" ⎮ "bottom" ⎮ "outside-top-left" ⎮ "outside-top-right" ⎮  "outside-top-center" ⎮ "outside-top-space-between" `     |  `"center"`          | 	The position for each arrow.                              |
 | threshold                  | `number`     |  `0`          | The number of the scroll value required to move through container. If left unset, the default is set to 1/3 of the container's width.                              |
 | showArrowByDefault                  | `boolean`     |  `true`          |  Shows the `right arrow` button on load, and it remains if the container has overflowing contents, and gets removed if it doesn't.                            |
 | id                  | `string`     |  `""`          | 	ID for container.                              |
@@ -144,7 +144,7 @@ This option is enabled by default. If you see the `right arrow` button showing u
 1. The component does not support custom arrow images, even though you can change the color & size.
 2. You should wrap each item by `<ScrollableArrowItem/>` to make it work and be able to use the API of the component.
 3. The layout may break if the items in the content don't have a fixed size (either width or height)
-4. On Firefox, the `Smooth Scrolling` option may be turned off if you see the scrolling instantly move to another position. This can be fixed in `about:preferences`. On the `Browsers` tab, enable `Smooth Scrolling`. 
+4. On Firefox, the `Smooth Scrolling` option may be turned off if you see the scrolling instantly move to another position. This can be fixed in `about:preferences`. On the `Browsers` tab, enable `Smooth Scrolling`.
 
 ## Version Change LOG
 [[1.1.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md?plain=1#110) Moved to 1.1.0 as there was a new drag event added for desktop.<br>
