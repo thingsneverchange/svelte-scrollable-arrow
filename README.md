@@ -150,6 +150,7 @@ This option is enabled by default. If you see the `right arrow` button showing u
 [[1.1.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md?plain=1#110) Moved to 1.1.0 as there was a new drag event added for desktop.<br>
 [[1.2.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#120) Added new events `dragEnd`, `dragStart`, `reachNearEnd`, `load`. Removed the scrollbar on Safari, Firefox, iPhone Safari, and Edge.<br>
 [[1.2.4]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#124) Ghosting issue has been resolved. Images, and links do not create ghosting anymore. See more details in `CHANGELOG.md`. New options for `arrowPositions` are added.
+[[1.2.8]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#128) Change the bug where the link inside the item doesn't get triggered.
 
 <i>The new `outside-top-right` `arrowPosition` option on `v1.2.4` preview. (It comes with 4 new styles.)</i> 👇
 
