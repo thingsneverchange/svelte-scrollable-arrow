@@ -32,8 +32,20 @@ function isScrolledIntoView(): boolean {
 
 
 onMount( () => {
+  let onClickDrag = false
   if(itemElement){
     parentElement = itemElement.closest('.scroll_area')
+
+    itemElement.addEventListener('click', (e) => {
+      if(onClickDrag){
+        e.preventDefault()
+        onClickDrag = false
+      }
+    })
+    itemElement.addEventListener('dragstart', (e) => {
+      e.preventDefault()
+      onClickDrag = true
+    })
   }
   isVisible = isScrolledIntoView()
   if(! parentElement){
@@ -51,8 +63,5 @@ onMount( () => {
 </div>
 <style>
 .item{
-  pointer-events:none;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */}
 </style>

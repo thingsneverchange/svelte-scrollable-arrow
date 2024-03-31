@@ -1,3 +1,9 @@
+## 1.2.8
+
+1. Fixed the bug where the link in the item didn't work.
+2. Moved the style tag into a file.
+3. Type check.
+
 ## 1.2.6
 
 1. Changed the default arrow threshold to `window.innerWidth - 50` for narrow screens.

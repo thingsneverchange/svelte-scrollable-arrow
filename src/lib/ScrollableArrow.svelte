@@ -3,6 +3,7 @@ import { createEventDispatcher, onMount } from 'svelte';
 import Arrow from '$lib/Arrow.svelte'
 import isHex from '$lib/utils/isHex.js'
 import isRGBA from '$lib/utils/isRGBA.js'
+import '$lib/style/style.css'
 
 type justifyContent = "start"|"end"|"flex-start"|"flex-end"|"center"|"left"|"right"|"normal"|"space-between"|"space-around"|"space-evenly"|"stretch"
 type AlignItems = "normal"| "flex-start"|"flex-end"|"center"|"start"|"end"|"self-start"|"self-end"|"baseline"|"first baseline"|"last baseline"|"stretch"|"safe"|"unsafe"
@@ -37,6 +38,7 @@ let _showLeft : boolean  = false;
 let _showRight : boolean  = showArrowByDefault ? true : false;
 let _mouseOnScrollView : boolean = false;
 let _scrollThreshold : number = 0 // moved inside onMount due to window.
+let _loaded = false
 
 /** styles **/
 let _internal_style = `--scrollview-arrow-justify-content=${justifyContent};
@@ -175,6 +177,7 @@ if(arrowPosition.startsWith('outside')){
 onMount( () :void => {
 
   dispatch('load')
+  _loaded = true
   __validateArrows()
 
   window.addEventListener('resize', (): void => {
@@ -258,6 +261,7 @@ onMount( () :void => {
     }
   })
 
+
   _element_scrollable.addEventListener('touchstart', () :void => {
     dispatch('dragStart')
   })
@@ -272,6 +276,7 @@ onMount( () :void => {
 
 <div id="{id != "" ? id : undefined}" style="{_internal_style}"
     class="{classNames ? classNames : ''}
+           {_loaded ? "scroll_is_loaded" : ""}
            scroll_view_container" on:mouseenter="{( () => {
         __mouseOverListener(true)
       })}" on:mouseleave="{( () => {
@@ -308,50 +313,3 @@ onMount( () :void => {
       </div>
   </div>
 </div>
-
-<style>
-.scroll_view_container{position:relative}
-.scroll_view_container button{background-color:transparent; padding:0px;border:0px;cursor:pointer}
-.scroll_view_container .arrow_container{width:100%;line-height:100%;}
-.scroll_view_container .arrow_container.default-arrow-position .arrow{z-index:9999;width:0px;height:100%;position:absolute;top:0px;cursor:pointer}
-.scroll_view_container .arrow_container.default-arrow-position .left{left:0px;background-image:linear-gradient(to left, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
-.scroll_view_container .arrow_container.default-arrow-position .right{right:0px;background-image:linear-gradient(to right, rgba(255, 255, 255, 0), var(--scrollview-arrow-left-shadow))}
-.scroll_view_container .arrow_container.default-arrow-position.scroll_view_shadow .arrow{width:40px;}
-
-.scroll_view_container .arrow_container.default-arrow-position .right button{position:absolute;right:15px;}
-.scroll_view_container .arrow_container.default-arrow-position .left button{position:absolute;left:15px;}
-.scroll_view_container .arrow_container.default-arrow-position.top button{top:10px}
-.scroll_view_container .arrow_container.default-arrow-position.center button{top:50%;transform:translateY(-50%)}
-.scroll_view_container .arrow_container.default-arrow-position.bottom button{bottom:10px;}
-
-.scroll_view_container .arrow_container.outside-arrow-position .left,
-.scroll_view_container .arrow_container.outside-arrow-position .right{margin-right:3px;margin-left:3px;}
-.scroll_view_container .arrow_container.outside-arrow-position{display:flex;padding:10px 0px;}
-.scroll_view_container .arrow_container.outside-arrow-position.outside-top-left{justify-content:left}
-.scroll_view_container .arrow_container.outside-arrow-position.outside-top-center{justify-content:center;}
-.scroll_view_container .arrow_container.outside-arrow-position.outside-top-right{justify-content:right}
-.scroll_view_container .arrow_container.outside-arrow-position.outside-top-space-between{justify-content:space-between;order: 2}
-.scroll_view_container .arrow_container.outside-arrow-position .arrow{display:inline-block;background-color: var(--scrollview-arrow-left-shadow);padding:9px 10px;border-radius:500px;}
-
-.scroll_view_container .scroll_area .content{display:flex; align-items: var(--scrollview-arrow-align-items); justify-content: var(--scrollview-arrow-justify-content)}
-.scroll_view_container .scroll_area{overflow:scroll;position:relative;width:100%;}
-.scroll_view_container .scroll_area {
-  /* Hide scrollbar for WebKit (Safari, Chrome) */
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS */
-
-  /* Hide scrollbar for Firefox */
-  overflow-y: scroll;
-  scrollbar-width: none;
-}
-
-/* Hide scrollbar for IE and Edge */
-.scroll_view_container .scroll_area::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for WebKit (Safari, Chrome) */
-}
-
-.scroll_view_container .scroll_area::-moz-scrollbar {
-  display: none; /* Hide scrollbar for Firefox */
-}
-
-</style>
