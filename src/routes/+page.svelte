@@ -27,7 +27,5 @@ const images = [
 </ScrollableArrow>
 
 <style>
-:global(html){background-color:#222;}
 .example{width:400px;height:400px;background-size:cover;background-position:center;}
-.example img{width:100%;display:block;}
 </style>
