@@ -1,3 +1,7 @@
+## 1.3.0
+
+1. Stylesheet importing issue fixed
+
 ## 1.2.8
 
 1. Fixed the bug where the link in the item didn't work.
