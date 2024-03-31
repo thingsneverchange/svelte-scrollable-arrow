@@ -226,7 +226,7 @@ onMount( () :void => {
       dispatch('dragStart')
     }
   })
-  _element_scrollable.addEventListener('mouseup', () :void => {
+  window.addEventListener('mouseup', () :void => {
     if(onDrag){
       dispatch('dragEnd')
       onDrag = false
@@ -235,17 +235,7 @@ onMount( () :void => {
     }
 
   })
-  // Event listener for mouse leaving the container
-  _element_scrollable.addEventListener('mouseout', function(event) {
-    isMouseInside = false;
-    if(onDrag){
-      dispatch('dragEnd')
-      onDargPosition = 0
-      onDargScrollPosition = 0
-    }
-  });
-
-  _element_scrollable.addEventListener('mousemove', (e) :void => {
+  window.addEventListener('mousemove', (e) :void => {
     if(onDrag && isMouseInside){
       if(e.screenX !== 0 && _element_scrollable){
           if(onDargPosition === 0){
@@ -349,6 +339,7 @@ onMount( () :void => {
   scrollbar-width: none;
 }
 .scroll_view_container .scroll_area{
+
       user-select: none;
       -moz-user-select: none;
       -webkit-user-select: none;

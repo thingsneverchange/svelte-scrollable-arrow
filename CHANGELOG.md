@@ -1,3 +1,7 @@
+## 1.3.2
+
+1. Improvement to `drag event`
+
 ## 1.3.0
 
 1. Stylesheet importing issue fixed

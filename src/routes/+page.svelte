@@ -16,9 +16,9 @@ const images = [
   console.log("d")
   })}"  on:dragEnd="{( () => {
     console.log("d")
-    })}" arrowPosition="outside-top-right" arrowShadow="{false}">
+    })}" arrowPosition="outside-top-right">
   {#each images as item}
-    <ScrollableArrowItem style="padding:0px 10px;">
+    <ScrollableArrowItem style="margin:0px 10px;">
       <a href="https://themecloset.com"><div class="example" style="background-image:url('{item}')">
       </div>
       </a>
