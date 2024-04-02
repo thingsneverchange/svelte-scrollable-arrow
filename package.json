@@ -1,6 +1,6 @@
 {
 	"name": "svelte-scrollable-arrow",
-	"version": "1.3.2",
+	"version": "1.3.3",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
