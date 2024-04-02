@@ -32,7 +32,6 @@
 4. Fixed bug where the scrollbar appears on Firefox, Safari & Mobile Safari.
 5. Changed the default scroll threshold to `1/2` from `1/3` on smaller devices.
 
-
 ## 1.1.4
 
 1. Drag direction was set backwards.

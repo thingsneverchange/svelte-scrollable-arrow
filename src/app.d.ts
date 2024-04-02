@@ -9,8 +9,7 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
-	namespace ScrollView {
-	}
+	namespace ScrollView {}
 }
 
 export {};

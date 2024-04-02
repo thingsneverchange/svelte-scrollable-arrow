@@ -1,6 +1,6 @@
 {
 	"name": "svelte-scrollable-arrow",
-	"version": "1.3.3",
+	"version": "1.3.4",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -15,14 +15,14 @@
 		"test:integration": "playwright test",
 		"test:unit": "vitest"
 	},
-  "license": {
+	"license": {
 		"type": "LIL",
 		"url": "https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/License"
 	},
 	"repository": {
-    "type": "git",
-    "url": "https://github.com/thingsneverchange/svelte-scrollable-arrow"
-  },
+		"type": "git",
+		"url": "https://github.com/thingsneverchange/svelte-scrollable-arrow"
+	},
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
