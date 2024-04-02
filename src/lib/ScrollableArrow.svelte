@@ -7,18 +7,21 @@ import isRGBA from '$lib/utils/isRGBA.js'
 type justifyContent = "start"|"end"|"flex-start"|"flex-end"|"center"|"left"|"right"|"normal"|"space-between"|"space-around"|"space-evenly"|"stretch"
 type AlignItems = "normal"| "flex-start"|"flex-end"|"center"|"start"|"end"|"self-start"|"self-end"|"baseline"|"first baseline"|"last baseline"|"stretch"|"safe"|"unsafe"
 
-export let justifyContent : justifyContent = "start";
-export let alignItems : AlignItems = "center";
-export let arrowShadow : boolean = true
-export let arrowShadowColor : string = "rgba(0,0,0,0.7)";
 export let arrow : boolean = true;
 export let arrowColor : string = "#ffffff";
 export let arrowSize : number = 18;
 export let arrowPosition : 'top' | 'center' | 'bottom' | "outside-top-left" | "outside-top-center" |"outside-top-right" | "outside-top-space-between" = 'center';
-export let id : string = "";
-export let threshold: number = 0;
+export let arrowShadow : boolean = true
+export let arrowShadowColor : string = "rgba(0,0,0,0.7)";
 export let showArrowByDefault : boolean = true
 
+
+export let threshold: number = 0;
+
+export let justifyContent : justifyContent = "start";
+export let alignItems : AlignItems = "center";
+
+export let id : string = "";
 export let style: string = '';
 
 if(typeof arrowSize != 'number') throw new Error("Arrow size should be only number.")
@@ -31,8 +34,8 @@ export { classNames as class }
 const dispatch = createEventDispatcher();
 
 let classNames : string = '';
-let _element_scrollable : HTMLElement;
 
+let _element_scrollable : HTMLElement;
 let _showLeft : boolean  = false;
 let _showRight : boolean  = showArrowByDefault ? true : false;
 let _mouseOnScrollView : boolean = false;
@@ -219,7 +222,7 @@ onMount( () :void => {
   let onDargScrollPosition : number = 0
   let onDrag : boolean = false
   let isMouseInside : boolean = false
-  _element_scrollable.addEventListener('mousedown', (e) :void => {
+  _element_scrollable.addEventListener('mousedown', () :void => {
     onDrag = true
     isMouseInside = true
     if(onDrag){

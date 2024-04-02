@@ -4,6 +4,9 @@
   <a href="https://npmjs.org/package/svelte-scrollable-arrow">
     <img src="https://badgen.now.sh/npm/v/svelte-scrollable-arrow" alt="version" />
   </a>
+  <a href="https://npmjs.org/package/svelte-scrollable-arrow">
+    <img src="https://img.shields.io/npm/dm/svelte-scrollable-arrow.svg" alt="version" />
+  </a>
 
 </div>
 
@@ -145,12 +148,13 @@ This option is enabled by default. If you see the `right arrow` button showing u
 2. You should wrap each item by `<ScrollableArrowItem/>` to make it work and be able to use the API of the component.
 3. The layout may break if the items in the content don't have a fixed size (either width or height)
 4. On Firefox, the `Smooth Scrolling` option may be turned off if you see the scrolling instantly move to another position. This can be fixed in `about:preferences`. On the `Browsers` tab, enable `Smooth Scrolling`.
+5. We advise to refrain from using `window.location.href` or `goto` as this may be triggered while a user drags the scrollview container.
 
 ## Version Change LOG
 [[1.1.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md?plain=1#110) Moved to 1.1.0 as there was a new drag event added for desktop.<br>
 [[1.2.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#120) Added new events `dragEnd`, `dragStart`, `reachNearEnd`, `load`. Removed the scrollbar on Safari, Firefox, iPhone Safari, and Edge.<br>
-[[1.2.4]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#124) Ghosting issue has been resolved. Images, and links do not create ghosting anymore. See more details in `CHANGELOG.md`. New options for `arrowPositions` are added.
-[[1.2.8]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#128) Change the bug where the link inside the item doesn't get triggered.
+[[1.2.4]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#124) Ghosting issue has been resolved. Images, and links do not create ghosting anymore. See more details in `CHANGELOG.md`. New options for `arrowPositions` are added.<br>
+[[1.2.8]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#128) Change the bug where the link inside the item doesn't get triggered.<br>
 [[1.3.2]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#131) Improvement to `drag event`
 
 <i>The new `outside-top-right` `arrowPosition` option on `v1.2.4` preview. (It comes with 4 new styles.)</i> 👇

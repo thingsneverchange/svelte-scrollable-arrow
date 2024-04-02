@@ -16,7 +16,7 @@ function isScrolledIntoView(): boolean {
   const elementRect = itemElement ? itemElement.getBoundingClientRect() : null
   const containerRect = parentElement ? parentElement.getBoundingClientRect() : null
 
-  if(elementRect === null || containerRect == null) return false
+  if(elementRect === null || containerRect === null) return false
 
   if(
     elementRect.right >= containerRect.left &&
@@ -32,7 +32,9 @@ function isScrolledIntoView(): boolean {
 
 
 onMount( () => {
+
   let onClickDrag = false
+
   if(itemElement){
     parentElement = itemElement.closest('.scroll_area')
 
@@ -47,7 +49,9 @@ onMount( () => {
       onClickDrag = true
     })
   }
+
   isVisible = isScrolledIntoView()
+
   if(! parentElement){
     throw new Error('Cannot find the containing scroll area. Visible, and invisible events may not work.')
   }else{
@@ -55,6 +59,7 @@ onMount( () => {
       isVisible = isScrolledIntoView()
     })
   }
+  
 })
 
 </script>
