@@ -23,7 +23,7 @@
 >
 	{#each images as item}
 		<ScrollableArrowItem style="margin:0px 10px;">
-			<a href="https://themecloset.com"
+			<a href="https://themecloset.com" aria-label="Themecloset"
 				><div class="example" style="background-image:url('{item}')"></div>
 			</a>
 		</ScrollableArrowItem>

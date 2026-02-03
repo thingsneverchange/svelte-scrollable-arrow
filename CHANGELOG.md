@@ -1,3 +1,8 @@
+## 2.0.0
+
+1. Migrated to Svelte 5
+
+
 ## 1.3.2
 
 1. Improvement to `drag event`

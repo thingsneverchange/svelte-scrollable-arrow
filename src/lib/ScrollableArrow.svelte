@@ -34,59 +34,84 @@
 		| 'safe'
 		| 'unsafe';
 
-	export let arrow: boolean = true;
-	export let arrowColor: string = '#ffffff';
-	export let arrowSize: number = 18;
-	export let arrowPosition:
+	interface Props {
+		arrow?: boolean;
+		arrowColor?: string;
+		arrowSize?: number;
+		arrowPosition?:
 		| 'top'
 		| 'center'
 		| 'bottom'
 		| 'outside-top-left'
 		| 'outside-top-center'
 		| 'outside-top-right'
-		| 'outside-top-space-between' = 'center';
-	export let arrowShadow: boolean = true;
-	export let arrowShadowColor: string = 'rgba(0,0,0,0.7)';
-	export let showArrowByDefault: boolean = true;
+		| 'outside-top-space-between';
+		arrowShadow?: boolean;
+		arrowShadowColor?: string;
+		showArrowByDefault?: boolean;
+		threshold?: number;
+		justifyContent?: JustifyContent;
+		alignItems?: AlignItems;
+		id?: string;
+		style?: string;
+		class?: string;
+		children?: import('svelte').Snippet;
+	}
 
-	export let threshold: number = 0;
+	let {
+		arrow = true,
+		arrowColor = '#ffffff',
+		arrowSize = 18,
+		arrowPosition = 'center',
+		arrowShadow = true,
+		arrowShadowColor = 'rgba(0,0,0,0.7)',
+		showArrowByDefault = true,
+		threshold = 0,
+		justifyContent = 'start',
+		alignItems = 'center',
+		id = '',
+		style = '',
+		class: classNames = '',
+		children
+	}: Props = $props();
 
-	export let justifyContent: JustifyContent = 'start';
-	export let alignItems: AlignItems = 'center';
-
-	export let id: string = '';
-	export let style: string = '';
-
-	if (typeof arrowSize != 'number') throw new Error('Arrow size should be only number.');
-	if (isRGBA(arrowShadowColor) === false)
-		throw new Error('Shadow Color should be a rgba format `rgba(0,0,0,0.5)`.');
-	if (isHex(arrowColor) === false) throw new Error('Arrow color should be hex `#ffffff`.');
-	if (typeof threshold != 'number') throw new Error('Threshold should be number.');
-
-	export { classNames as class };
-	let classNames: string = '';
+	$effect(() => {
+		if (typeof arrowSize != 'number') throw new Error('Arrow size should be only number.');
+		if (isRGBA(arrowShadowColor) === false)
+			throw new Error('Shadow Color should be a rgba format `rgba(0,0,0,0.5)`.');
+		if (isHex(arrowColor) === false) throw new Error('Arrow color should be hex `#ffffff`.');
+		if (typeof threshold != 'number') throw new Error('Threshold should be number.');
+	});
 
 	const dispatch = createEventDispatcher();
 
-	let _element_scrollable: HTMLElement;
-	let _showLeft: boolean = false;
-	let _showRight: boolean = showArrowByDefault ? true : false;
+	let _element_scrollable: HTMLElement | null = $state(null);
+	let _showLeft: boolean = $state(false);
+	let _showRight: boolean = $state(true);
 	let _mouseOnScrollView: boolean = false;
 	let _scrollThreshold: number = 0; // moved inside onMount due to window.
-	let _loaded = false;
+	let _loaded = $state(false);
+
+	$effect(() => {
+		if (!_loaded) {
+			_showRight = showArrowByDefault ? true : false;
+		}
+	});
 
 	/** styles **/
-	let _internal_style = `--scrollview-arrow-justify-content=${justifyContent};
-          --scrollview-arrow-align-items=${alignItems};
-          ${style != '' ? style + ';' : ''};`;
+	let _internal_style = $derived.by(() => {
+		let internalStyle = `--scrollview-arrow-justify-content=${justifyContent};\n          --scrollview-arrow-align-items=${alignItems};\n          ${style != '' ? style + ';' : ''};`;
 
-	if (arrowShadow) {
-		_internal_style += `--scrollview-arrow-left-shadow: ${arrowShadowColor};`;
-		_internal_style += `--scrollview-arrow-right-shadow: ${arrowShadowColor};`;
-	} else {
-		_internal_style += `--scrollview-arrow-left-shadow: rgba(255,255,255,0);`;
-		_internal_style += `--scrollview-arrow-right-shadow: rgba(255,255,255,0);`;
-	}
+		if (arrowShadow) {
+			internalStyle += `--scrollview-arrow-left-shadow: ${arrowShadowColor};`;
+			internalStyle += `--scrollview-arrow-right-shadow: ${arrowShadowColor};`;
+		} else {
+			internalStyle += `--scrollview-arrow-left-shadow: rgba(255,255,255,0);`;
+			internalStyle += `--scrollview-arrow-right-shadow: rgba(255,255,255,0);`;
+		}
+
+		return internalStyle;
+	});
 	/** styles **/
 
 	/** validate arrows / Hide or show **/
@@ -110,6 +135,7 @@
 	}
 
 	function __scrollTo(value: number, props?: { behavior: 'auto' | 'smooth' }): void {
+		if (!_element_scrollable) return;
 		_element_scrollable.scrollTo({
 			left: value,
 			behavior: props?.behavior ? props.behavior : 'smooth' // This makes the scrolling smooth
@@ -117,6 +143,7 @@
 	}
 
 	function __moveToRight(): void {
+		if (!_element_scrollable) return;
 		let scrollValue: number = _element_scrollable.scrollLeft + _scrollThreshold;
 		// goes for 3/1 scroll of page width
 		if (_element_scrollable.scrollWidth - _element_scrollable.scrollLeft - window.innerWidth - _scrollThreshold < 200) {
@@ -129,6 +156,7 @@
 	}
 
 	function __moveToLeft(): void {
+		if (!_element_scrollable) return;
 		let scrollValue: number = _element_scrollable.scrollLeft - _scrollThreshold;
 		// goes for 3/1 scroll of page width
 		if (_element_scrollable.scrollLeft <= _scrollThreshold + 250) {
@@ -142,7 +170,7 @@
 
 	/// checks for scroll started, and ended
 	let _scrollStarted = false;
-	let _scrollStartTimer: ReturnType<typeof setTimeout> | null;
+	let _scrollStartTimer: ReturnType<typeof setTimeout> | null = null;
 	function __scrollEventListener(): void {
 		if (!_scrollStarted) {
 			_scrollStarted = true;
@@ -174,6 +202,7 @@
 	let _reched_end = false;
 	let _reach_near_end = false;
 	function __scrollCheckReachEnd() {
+		if (!_element_scrollable) return;
 		let scrollRemaining = Math.abs(
 			_element_scrollable.scrollWidth -
 				_element_scrollable.scrollLeft -
@@ -198,19 +227,22 @@
 	}
 
 	/// determine-arrow-position-and-class
-	let arrowPositionClass = '';
-	if (['top', 'center', 'bottom'].includes(arrowPosition)) {
-		arrowPositionClass = 'default-arrow-position ' + arrowPosition;
-	}
-	if (arrowPosition.startsWith('outside')) {
-		arrowPositionClass = 'outside-arrow-position ' + arrowPosition;
-	}
+	let arrowPositionClass = $derived.by(() => {
+		if (['top', 'center', 'bottom'].includes(arrowPosition)) {
+			return 'default-arrow-position ' + arrowPosition;
+		}
+		if (arrowPosition.startsWith('outside')) {
+			return 'outside-arrow-position ' + arrowPosition;
+		}
+		return '';
+	});
 
 	////
 
 	onMount((): void => {
 		dispatch('load');
 		_loaded = true;
+		if (!_element_scrollable) throw new Error('Cannot find scroll area element.');
 		__validateArrows();
 
 		window.addEventListener('resize', (): void => {
@@ -288,16 +320,16 @@
 
 <div
 	id={id != '' ? id : undefined}
-	
+
 	style={_internal_style}
 	class="{classNames ? classNames : ''}
            {_loaded ? 'scroll_is_loaded' : ''}
            scroll_view_container"
 
-	on:mouseenter={() => {
+	onmouseenter={() => {
 		__mouseOverListener(true);
 	}}
-	on:mouseleave={() => {
+	onmouseleave={() => {
 		__mouseOverListener(false);
 	}}
 
@@ -309,9 +341,9 @@
 		{#if _showLeft && arrow}
 			<div class="left arrow">
 				<button
-					on:click={__moveToLeft}
+					onclick={__moveToLeft}
 					tabindex="0"
-					on:keydown={() => {
+					onkeydown={() => {
 						/// disabled becuase we have keyboard event
 					}}>
 					<Arrow color={arrowColor} size="{arrowSize.toString()}px" direction="left" />
@@ -323,9 +355,9 @@
 		{#if _showRight && arrow}
 			<div class="right arrow">
 				<button
-					on:click={__moveToRight}
+					onclick={__moveToRight}
 					tabindex="0"
-					on:keydown={() => {
+					onkeydown={() => {
 						/// disabled becuase we have keyboard event
 					}}>
 					<Arrow color={arrowColor} size="{arrowSize.toString()}px" direction="Right" />
@@ -337,7 +369,7 @@
 	</div>
 	<div class="scroll_area" bind:this={_element_scrollable}>
 		<div class="content">
-			<slot />
+			{@render children?.()}
 		</div>
 	</div>
 </div>

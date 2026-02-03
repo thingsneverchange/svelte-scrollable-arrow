@@ -20,6 +20,9 @@ Images, menus, and buttons can get unmanageable, requiring one to write a separa
 
 This component works seamlessly on any device, including mobile, tablet, or desktop. It efficiently handles various scroll triggers, thanks to its utilization of the [scroll event](https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event),
 
+- **Svelte 5**: Use `svelte-scrollable-arrow@^2` (current)
+- **Svelte 4**: Use `svelte-scrollable-arrow@1.3.2`
+
 - Mouse wheels ✨
 - Keyboard arrow events ✨ (Only if mouse is over the container to prevent every instance from listening to this event)
 - Built-in arrows (←/→) ✨
@@ -52,8 +55,24 @@ Automatically hides/shows arrows depending on the container size.
 
 ## Installation
 
+### Svelte 5
+
 ```bash
 npm install svelte-scrollable-arrow
+```
+
+### Svelte 4
+
+```bash
+npm install svelte-scrollable-arrow@1.3.2
+```
+
+```bash
+pnpm add svelte-scrollable-arrow@1.3.2
+```
+
+```bash
+yarn add svelte-scrollable-arrow@1.3.2
 ```
 
 ```javascript
@@ -165,6 +184,7 @@ This option is enabled by default. If you see the `right arrow` button showing u
 [[1.2.4]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#124) Ghosting issue has been resolved. Images, and links do not create ghosting anymore. See more details in `CHANGELOG.md`. New options for `arrowPositions` are added.<br>
 [[1.2.8]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#128) Change the bug where the link inside the item doesn't get triggered.<br>
 [[1.3.2]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#131) Improvement to `drag event`
+[[2.0.0]](https://github.com/thingsneverchange/svelte-scrollable-arrow/blob/master/CHANGELOG.md#200) Migrated to Svelte 5 
 
 <i>The new `outside-top-right` `arrowPosition` option on `v1.2.4` preview. (It comes with 4 new styles.)</i> 👇
 
