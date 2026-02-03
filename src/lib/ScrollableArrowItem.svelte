@@ -1,15 +1,25 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount } from 'svelte';
-	export { classNames as class };
-	export let id: string = '';
-	export let style: string = '';
+	
 
 	const dispatch = createEventDispatcher();
 
-	let classNames: string = '';
-	let isVisible: boolean = false;
+	interface Props {
+		id?: string;
+		style?: string;
+		class?: string;
+		children?: import('svelte').Snippet;
+	}
 
-	let itemElement: HTMLElement | null;
+	let {
+		id = '',
+		style = '',
+		class: classNames = '',
+		children
+	}: Props = $props();
+	let isVisible: boolean = $state(false);
+
+	let itemElement: HTMLElement | null = $state();
 	let parentElement: HTMLElement | null;
 
 	function isScrolledIntoView(): boolean {
@@ -65,7 +75,7 @@
 	id={id != '' ? id : undefined}
 	style={style != '' ? style : undefined}
 >
-	<slot />
+	{@render children?.()}
 </div>
 
 <style>

@@ -34,28 +34,47 @@
 		| 'safe'
 		| 'unsafe';
 
-	export let arrow: boolean = true;
-	export let arrowColor: string = '#ffffff';
-	export let arrowSize: number = 18;
-	export let arrowPosition:
+	interface Props {
+		arrow?: boolean;
+		arrowColor?: string;
+		arrowSize?: number;
+		arrowPosition?:
 		| 'top'
 		| 'center'
 		| 'bottom'
 		| 'outside-top-left'
 		| 'outside-top-center'
 		| 'outside-top-right'
-		| 'outside-top-space-between' = 'center';
-	export let arrowShadow: boolean = true;
-	export let arrowShadowColor: string = 'rgba(0,0,0,0.7)';
-	export let showArrowByDefault: boolean = true;
+		| 'outside-top-space-between';
+		arrowShadow?: boolean;
+		arrowShadowColor?: string;
+		showArrowByDefault?: boolean;
+		threshold?: number;
+		justifyContent?: JustifyContent;
+		alignItems?: AlignItems;
+		id?: string;
+		style?: string;
+		class?: string;
+		children?: import('svelte').Snippet;
+	}
 
-	export let threshold: number = 0;
+	let {
+		arrow = true,
+		arrowColor = '#ffffff',
+		arrowSize = 18,
+		arrowPosition = 'center',
+		arrowShadow = true,
+		arrowShadowColor = 'rgba(0,0,0,0.7)',
+		showArrowByDefault = true,
+		threshold = 0,
+		justifyContent = 'start',
+		alignItems = 'center',
+		id = '',
+		style = '',
+		class: classNames = '',
+		children
+	}: Props = $props();
 
-	export let justifyContent: JustifyContent = 'start';
-	export let alignItems: AlignItems = 'center';
-
-	export let id: string = '';
-	export let style: string = '';
 
 	if (typeof arrowSize != 'number') throw new Error('Arrow size should be only number.');
 	if (isRGBA(arrowShadowColor) === false)
@@ -63,22 +82,19 @@
 	if (isHex(arrowColor) === false) throw new Error('Arrow color should be hex `#ffffff`.');
 	if (typeof threshold != 'number') throw new Error('Threshold should be number.');
 
-	export { classNames as class };
-	let classNames: string = '';
-
 	const dispatch = createEventDispatcher();
 
-	let _element_scrollable: HTMLElement;
-	let _showLeft: boolean = false;
-	let _showRight: boolean = showArrowByDefault ? true : false;
+	let _element_scrollable: HTMLElement = $state();
+	let _showLeft: boolean = $state(false);
+	let _showRight: boolean = $state(showArrowByDefault ? true : false);
 	let _mouseOnScrollView: boolean = false;
 	let _scrollThreshold: number = 0; // moved inside onMount due to window.
-	let _loaded = false;
+	let _loaded = $state(false);
 
 	/** styles **/
-	let _internal_style = `--scrollview-arrow-justify-content=${justifyContent};
+	let _internal_style = $state(`--scrollview-arrow-justify-content=${justifyContent};
           --scrollview-arrow-align-items=${alignItems};
-          ${style != '' ? style + ';' : ''};`;
+          ${style != '' ? style + ';' : ''};`);
 
 	if (arrowShadow) {
 		_internal_style += `--scrollview-arrow-left-shadow: ${arrowShadowColor};`;
@@ -198,7 +214,7 @@
 	}
 
 	/// determine-arrow-position-and-class
-	let arrowPositionClass = '';
+	let arrowPositionClass = $state('');
 	if (['top', 'center', 'bottom'].includes(arrowPosition)) {
 		arrowPositionClass = 'default-arrow-position ' + arrowPosition;
 	}
@@ -288,16 +304,16 @@
 
 <div
 	id={id != '' ? id : undefined}
-	
+
 	style={_internal_style}
 	class="{classNames ? classNames : ''}
            {_loaded ? 'scroll_is_loaded' : ''}
            scroll_view_container"
 
-	on:mouseenter={() => {
+	onmouseenter={() => {
 		__mouseOverListener(true);
 	}}
-	on:mouseleave={() => {
+	onmouseleave={() => {
 		__mouseOverListener(false);
 	}}
 
@@ -309,9 +325,9 @@
 		{#if _showLeft && arrow}
 			<div class="left arrow">
 				<button
-					on:click={__moveToLeft}
+					onclick={__moveToLeft}
 					tabindex="0"
-					on:keydown={() => {
+					onkeydown={() => {
 						/// disabled becuase we have keyboard event
 					}}>
 					<Arrow color={arrowColor} size="{arrowSize.toString()}px" direction="left" />
@@ -323,9 +339,9 @@
 		{#if _showRight && arrow}
 			<div class="right arrow">
 				<button
-					on:click={__moveToRight}
+					onclick={__moveToRight}
 					tabindex="0"
-					on:keydown={() => {
+					onkeydown={() => {
 						/// disabled becuase we have keyboard event
 					}}>
 					<Arrow color={arrowColor} size="{arrowSize.toString()}px" direction="Right" />
@@ -337,7 +353,7 @@
 	</div>
 	<div class="scroll_area" bind:this={_element_scrollable}>
 		<div class="content">
-			<slot />
+			{@render children?.()}
 		</div>
 	</div>
 </div>
