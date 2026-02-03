@@ -75,6 +75,7 @@
 		children
 	}: Props = $props();
 
+<<<<<<< HEAD
 	$effect(() => {
 		if (typeof arrowSize != 'number') throw new Error('Arrow size should be only number.');
 		if (isRGBA(arrowShadowColor) === false)
@@ -101,6 +102,28 @@
 	/** styles **/
 	let _internal_style = $derived.by(() => {
 		let internalStyle = `--scrollview-arrow-justify-content=${justifyContent};\n          --scrollview-arrow-align-items=${alignItems};\n          ${style != '' ? style + ';' : ''};`;
+=======
+
+	if (typeof arrowSize != 'number') throw new Error('Arrow size should be only number.');
+	if (isRGBA(arrowShadowColor) === false)
+		throw new Error('Shadow Color should be a rgba format `rgba(0,0,0,0.5)`.');
+	if (isHex(arrowColor) === false) throw new Error('Arrow color should be hex `#ffffff`.');
+	if (typeof threshold != 'number') throw new Error('Threshold should be number.');
+
+	const dispatch = createEventDispatcher();
+
+	let _element_scrollable: HTMLElement = $state();
+	let _showLeft: boolean = $state(false);
+	let _showRight: boolean = $state(showArrowByDefault ? true : false);
+	let _mouseOnScrollView: boolean = false;
+	let _scrollThreshold: number = 0; // moved inside onMount due to window.
+	let _loaded = $state(false);
+
+	/** styles **/
+	let _internal_style = $state(`--scrollview-arrow-justify-content=${justifyContent};
+          --scrollview-arrow-align-items=${alignItems};
+          ${style != '' ? style + ';' : ''};`);
+>>>>>>> 82d851fa6a672b9a8ef0d574c7c86a4b0646b294
 
 		if (arrowShadow) {
 			internalStyle += `--scrollview-arrow-left-shadow: ${arrowShadowColor};`;
@@ -227,6 +250,7 @@
 	}
 
 	/// determine-arrow-position-and-class
+<<<<<<< HEAD
 	let arrowPositionClass = $derived.by(() => {
 		if (['top', 'center', 'bottom'].includes(arrowPosition)) {
 			return 'default-arrow-position ' + arrowPosition;
@@ -236,6 +260,15 @@
 		}
 		return '';
 	});
+=======
+	let arrowPositionClass = $state('');
+	if (['top', 'center', 'bottom'].includes(arrowPosition)) {
+		arrowPositionClass = 'default-arrow-position ' + arrowPosition;
+	}
+	if (arrowPosition.startsWith('outside')) {
+		arrowPositionClass = 'outside-arrow-position ' + arrowPosition;
+	}
+>>>>>>> 82d851fa6a672b9a8ef0d574c7c86a4b0646b294
 
 	////
 

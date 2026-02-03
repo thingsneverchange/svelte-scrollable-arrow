@@ -19,8 +19,13 @@
 	}: Props = $props();
 	let isVisible: boolean = $state(false);
 
+<<<<<<< HEAD
 	let itemElement: HTMLElement | null = $state(null);
 	let parentElement: HTMLElement | null = null;
+=======
+	let itemElement: HTMLElement | null = $state();
+	let parentElement: HTMLElement | null;
+>>>>>>> 82d851fa6a672b9a8ef0d574c7c86a4b0646b294
 
 	function isScrolledIntoView(): boolean {
 		const elementRect = itemElement ? itemElement.getBoundingClientRect() : null;
